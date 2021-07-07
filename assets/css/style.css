@@ -306,12 +306,17 @@ h1, h2, h3, h4, h5, h6 {
 #hero .social-links {
   margin-top: 30px;
 }
-#hero .social-links .twitter{
-  color: #1DA1F2;
+#hero .social-links .yahoo{
+  color: #410093;
 }
 #hero .social-links .facebook{
   color: #1877F2;
 }
+#hero .social-links .facebook{
+  color: #410093;
+}
+
+
 #hero .social-links .instagram{
   color: #E4405F;
 }
@@ -1179,8 +1184,8 @@ section {
   margin: 0 0 40px 0;
 }
 
-#footer .social-links .twitter{
-  background: #1DA1F2;
+#footer .social-links .yahoo{
+  background: #410093;
 }
 #footer .social-links .instagram{
   background: #E4405F;
