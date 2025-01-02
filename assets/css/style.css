@@ -1234,12 +1234,12 @@ section {
 .resume_pdf{
 background: #2cea63;
     width: 175px;
-    padding: 11px;
+    padding: 12px 32px;
     color: white;
     border-radius: 28px;
     margin-top: 21px;
   }
   .resume_pdf:hover{
-    color: #20c997;
-    background: #2cea63;
+    color: #fff;
+    background: #000;
   }
