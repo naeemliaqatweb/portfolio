@@ -1250,3 +1250,7 @@ section {
   width: 100%;
   object-fit: cover;
 }
+.portfolio-details-slider.swiper-container.swiper-container-initialized.swiper-container-horizontal.swiper-container-pointer-events {
+  background: #e9ecef;
+  padding: 10px;
+}
