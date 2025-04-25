@@ -516,7 +516,16 @@ section {
   width: 1px;
   height: 10px;
   transition: .9s;
-  background-color: #2cea63;
+  /* background-color: #2cea63; */
+  background: linear-gradient(
+    to right, 
+    #b827fc 0%, 
+    #2c90fc 25%, 
+    #b8fd33 50%, 
+    #fec837 75%, 
+    #fd1892 100%
+);
+
 }
 
 /*--------------------------------------------------------------
@@ -1253,4 +1262,10 @@ section {
 .portfolio-details-slider.swiper-container.swiper-container-initialized.swiper-container-horizontal.swiper-container-pointer-events {
   background: #e9ecef;
   padding: 10px;
+}
+
+img.img-fluid{
+  border: 5px solid transparent;
+  border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
+  border-image-slice: 1;
 }
