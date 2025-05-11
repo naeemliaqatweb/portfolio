@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Naeem Liaqat(Portfolio)</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- ======= Mobile nav toggle button ======= -->
+  <!-- <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bi bi-list mobile-nav-toggle"></i></button> -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex flex-column justify-content-center">
+    <nav id="navbar" class="navbar nav-menu">
+      <ul>
+        <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+        <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+        <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+        <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a>
+          <li><a href="./interview.html" target="_blank" class="nav-link scrollto"><i class='bx bxs-file-pdf'></i> <span>InterView</span></a>
+        </li>
+        <li><a href="../msqs.html" target="_blank" class="nav-link scrollto"><i class='bx bx-list-check'></i>
+          <span>MCQ's</span></a>
+        </li>
+      </ul>
+    </nav><!-- .nav-menu -->
+
+  </header><!-- End Header -->
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center">
+    <div class="container" data-aos="zoom-in" data-aos-delay="100">
+      <h1>Naeem Liaqat</h1>
+      <p>I'm <span class="typed"
+          data-typed-items="Software Enginee , PHP Developer, Laravel Developer, Yii Developer , Wordpress Developer , React & Node Js"></span>
+      </p>
+      <div class="social-links" target="_blank">
+        <a href="mailto:naeemliaqat41@yahoo.com" class="yahoo"><i class="bx bxl-yahoo"></i></a>
+        <a href="https://www.facebook.com/naeemliaqat41" class="facebook"><i class="bx bxl-facebook"
+            target="_blank"></i></a>
+        <a href="https://www.linkedin.com/in/naeem-liaqat-85970719b/" class="linkedin"><i class="bx bxl-linkedin"
+            target="_blank"></i></a>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+    <div class="container my-5">
+        <h2 class="mb-4 text-center">React MCQ Quiz</h2>
+        <div id="quiz-container" class="row"></div>
+        <div id="result" class="text-center mt-4 fw-bold fs-4"></div>
+      </div>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>Naeem Liaqat</h3>
+      <p>Thanks For Visit my Portfolio.If You are interested to click Social link to contact me.</p>
+      <div class="social-links">
+        <a href="mailto:naeemliaqat41@yahoo.com" class="yahoo"><i class="bx bxl-yahoo"></i></a>
+        <a href="https://www.facebook.com/naeemliaqat41" class="facebook"><i class="bx bxl-facebook"
+            target="_blank"></i></a>
+        <a href="https://www.linkedin.com/in/naeem-liaqat-85970719b/" class="linkedin"><i class="bx bxl-linkedin"
+            target="_blank"></i></a>
+
+      </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>2025</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+
+        Designed by <strong> Naeem Liaqat</strong>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+
+
+  <script>
+    const questions = [
+    {
+    question: "What is React primarily used for?",
+    options: ["Building mobile apps", "Server-side processing", "Building user interfaces", "Data analysis"],
+    answer: 2
+  },
+  {
+    question: "Which feature of React allows it to efficiently update the UI?",
+    options: ["Real DOM", "Virtual DOM", "Shadow DOM", "Document Fragment"],
+    answer: 1
+  },
+  {
+    question: "JSX stands for...",
+    options: ["JavaScript XML", "Java Syntax Extension", "JavaScript Syntax", "Java Structured XML"],
+    answer: 0
+  },
+  {
+    question: "In JSX, how do you express JavaScript variables?",
+    options: ["Using double quotes", "Using curly braces", "Using parentheses", "Using square brackets"],
+    answer: 1
+  },
+  {
+    question: "Which method is used to create a new React app?",
+    options: ["npm start", "npx create-react-app", "npm install react", "react-new-app"],
+    answer: 1
+  },
+  {
+    question: "What is the purpose of the render() method in React?",
+    options: ["To initialize state", "To update the DOM", "To render HTML to the DOM", "To fetch data"],
+    answer: 2
+  },
+  {
+    question: "Which hook is used to manage state in functional components?",
+    options: ["useEffect", "useState", "useContext", "useReducer"],
+    answer: 1
+  },
+  {
+    question: "What is the purpose of useEffect in React?",
+    options: ["To manage state", "To handle side effects", "To create context", "To define props"],
+    answer: 1
+  },
+  {
+    question: "What is the default port where webpack-dev-server runs?",
+    options: ["3000", "3306", "3030", "8080"],
+    answer: 3
+  },
+  {
+    question: "Which company developed ReactJS?",
+    options: ["Apple", "Facebook", "Google", "Twitter"],
+    answer: 1
+  },
+  {
+    question: "What is the purpose of props in React?",
+    options: ["To manage internal state", "To pass data between components", "To handle events", "To define component styles"],
+    answer: 1
+  },
+  {
+    question: "Which method is used to change the state of a React component?",
+    options: ["this.setState()", "this.state()", "this.changeState()", "this.updateState()"],
+    answer: 0
+  },
+  {
+    question: "What is the purpose of React Fragments?",
+    options: ["To group multiple elements without adding extra nodes to the DOM", "To define component styles", "To manage state", "To handle events"],
+    answer: 0
+  },
+  {
+    question: "Which lifecycle method is called after a component is rendered?",
+    options: ["componentWillMount", "componentDidMount", "componentWillUpdate", "componentDidUpdate"],
+    answer: 1
+  },
+  {
+    question: "What is the purpose of the Context API in React?",
+    options: ["To manage component state", "To share global data across components", "To handle routing", "To define component styles"],
+    answer: 1
+  },
+  {
+    question: "Which hook is used to access context in functional components?",
+    options: ["useState", "useEffect", "useContext", "useReducer"],
+    answer: 2
+  },
+  {
+    question: "What is the purpose of keys in React lists?",
+    options: ["To identify which items have changed", "To define component styles", "To manage state", "To handle events"],
+    answer: 0
+  },
+  {
+    question: "Which method is used to prevent default behavior in React?",
+    options: ["preventDefault()", "stopDefault()", "cancelDefault()", "haltDefault()"],
+    answer: 0
+  },
+  {
+    question: "What is the purpose of useReducer in React?",
+    options: ["To manage complex state logic", "To handle side effects", "To create context", "To define props"],
+    answer: 0
+  },
+  {
+    question: "Which of the following is true about React components?",
+    options: ["They must return a single element", "They cannot accept props", "They must be class-based", "They cannot have state"],
+    answer: 0
+  },
+  {
+    question: "What is the purpose of shouldComponentUpdate?",
+    options: ["To force a component to update", "To prevent a component from updating", "To initialize state", "To fetch data"],
+    answer: 1
+  },
+  {
+    question: "Which of the following is used to create a class inheritance in React?",
+    options: ["inherit", "extends", "implements", "super"],
+    answer: 1
+  },
+  {
+    question: "What is the purpose of React.memo?",
+    options: ["To memoize functional components", "To manage state", "To handle side effects", "To create context"],
+    answer: 0
+  },
+  {
+    question: "Which method is used to access the state of a component from inside a member function?",
+    options: ["this.state", "this.getState()", "this.state()", "this.values"],
+    answer: 0
+  },
+  {
+    question: "What is the purpose of useLayoutEffect in React?",
+    options: ["To handle side effects after rendering", "To handle side effects before rendering", "To manage state", "To create context"],
+    answer: 1
+  },
+  {
+    question: "Which of the following is true about React Hooks?",
+    options: ["They can be used in class components", "They can only be used in functional components", "They are used to manage props", "They are not supported in React"],
+    answer: 1
+  },
+  {
+    question: "What is the purpose of Redux in React?",
+    options: ["To manage global state", "To handle routing", "To define component styles", "To create context"],
+    answer: 0
+  },
+  {
+    question: "Which of the following allows accessing URL parameters from the React component?",
+    options: ["props.route", "props.location", "props.match.params", "props.params"],
+    answer: 2
+  },
+  {
+    question: "Which of the following is used to handle code-splitting in React?",
+    options: ["React.lazy", "React.memo", "React.fallback", "React.split"],
+    answer: 0
+  },
+  {
+    question: "What is the purpose of higher-order components (HOCs) in React?",
+    options: ["To manage component events", "To manage component styles", "To reuse component logic", "To share data between components"],
+    answer: 2
+  }
+];
+
+    const quizContainer = document.getElementById("quiz-container");
+    const resultContainer = document.getElementById("result");
+    let score = 0;
+
+    questions.forEach((q, index) => {
+      const box = document.createElement("div");
+      box.classList.add("p-3", "mb-4", "bg-light", "border", "rounded", "col-md-6");
+      box.innerHTML = `<h5>Q${index + 1}. ${q.question}</h5>`;
+
+      q.options.forEach((opt, i) => {
+        const btn = document.createElement("button");
+        btn.classList.add("btn", "btn-outline-primary", "d-block", "my-2", "w-100", "text-start");
+        btn.textContent = opt;
+
+        btn.addEventListener("click", function () {
+          if (box.classList.contains("answered")) return;
+
+          box.classList.add("answered");
+          const buttons = box.querySelectorAll("button");
+
+          buttons.forEach((b, idx) => {
+            b.classList.add("disabled");
+            b.disabled = true;
+            if (idx === q.answer) b.classList.replace("btn-outline-primary", "btn-success");
+          });
+
+          if (i !== q.answer) {
+            btn.classList.replace("btn-outline-primary", "btn-danger");
+          } else {
+            score++;
+          }
+
+          if (document.querySelectorAll(".answered").length === questions.length) {
+            resultContainer.innerHTML = `You scored <span class="text-success">${score}</span> out of <span class="text-primary">${questions.length}</span>`;
+          }
+        });
+
+        box.appendChild(btn);
+      });
+
+      quizContainer.appendChild(box);
+    });
+  </script>
+
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/typed.js/typed.min.js"></script>
+  <script src="../assets/vendor/waypoints/noframework.waypoints.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
