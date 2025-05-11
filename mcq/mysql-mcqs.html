@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Naeem Liaqat(Portfolio)</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- ======= Mobile nav toggle button ======= -->
+  <!-- <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bi bi-list mobile-nav-toggle"></i></button> -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex flex-column justify-content-center">
+    <nav id="navbar" class="navbar nav-menu">
+      <ul>
+        <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+        <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+        <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+        <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a>
+          <li><a href="./interview.html" target="_blank" class="nav-link scrollto"><i class='bx bxs-file-pdf'></i> <span>InterView</span></a>
+        </li>
+        <li><a href="../msqs.html" target="_blank" class="nav-link scrollto"><i class='bx bxs-file-pdf'></i>
+          <span>MCQ's</span></a>
+        </li>
+      </ul>
+    </nav><!-- .nav-menu -->
+
+  </header><!-- End Header -->
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center">
+    <div class="container" data-aos="zoom-in" data-aos-delay="100">
+      <h1>Naeem Liaqat</h1>
+      <p>I'm <span class="typed"
+          data-typed-items="Software Enginee , PHP Developer, Laravel Developer, Yii Developer , Wordpress Developer , React & Node Js"></span>
+      </p>
+      <div class="social-links" target="_blank">
+        <a href="mailto:naeemliaqat41@yahoo.com" class="yahoo"><i class="bx bxl-yahoo"></i></a>
+        <a href="https://www.facebook.com/naeemliaqat41" class="facebook"><i class="bx bxl-facebook"
+            target="_blank"></i></a>
+        <a href="https://www.linkedin.com/in/naeem-liaqat-85970719b/" class="linkedin"><i class="bx bxl-linkedin"
+            target="_blank"></i></a>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+    <div class="container my-5">
+      <h2 class="mb-4 text-center">MySQL MCQ Quiz</h2>
+      <div id="quiz-container" class="row"></div>
+        <div id="result" class="text-center mt-4 fw-bold fs-4"></div>
+      </div>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>Naeem Liaqat</h3>
+      <p>Thanks For Visit my Portfolio.If You are interested to click Social link to contact me.</p>
+      <div class="social-links">
+        <a href="mailto:naeemliaqat41@yahoo.com" class="yahoo"><i class="bx bxl-yahoo"></i></a>
+        <a href="https://www.facebook.com/naeemliaqat41" class="facebook"><i class="bx bxl-facebook"
+            target="_blank"></i></a>
+        <a href="https://www.linkedin.com/in/naeem-liaqat-85970719b/" class="linkedin"><i class="bx bxl-linkedin"
+            target="_blank"></i></a>
+
+      </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>2025</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+
+        Designed by <strong> Naeem Liaqat</strong>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+
+
+  <script>
+    const questions = [
+    { question: "What is MySQL?", options: ["A text editor", "An operating system", "A relational database", "A programming language"], answer: 2 },
+  { question: "Which command is used to view all databases?", options: ["SHOW DATABASES;", "LIST DATABASES;", "DISPLAY DATABASES;", "GET DATABASES;"], answer: 0 },
+  { question: "Which command is used to select a database?", options: ["USE database_name;", "SELECT database_name;", "CHOOSE database_name;", "OPEN database_name;"], answer: 0 },
+  { question: "Which keyword is used to remove a database?", options: ["DELETE", "REMOVE", "DROP", "ERASE"], answer: 2 },
+  { question: "What does the SELECT statement do?", options: ["Deletes records", "Inserts records", "Retrieves data", "Modifies structure"], answer: 2 },
+  { question: "Which clause is used to filter results?", options: ["ORDER BY", "GROUP BY", "FILTER", "WHERE"], answer: 3 },
+  { question: "How do you sort results in descending order?", options: ["ORDER BY column DESC", "SORT column", "ORDER DESC column", "SORT DESC"], answer: 0 },
+  { question: "Which command adds a new row?", options: ["ADD INTO", "INSERT INTO", "NEW INTO", "CREATE ROW"], answer: 1 },
+  { question: "Which command modifies existing data?", options: ["MODIFY", "UPDATE", "EDIT", "CHANGE"], answer: 1 },
+  { question: "Which command removes rows?", options: ["REMOVE", "DELETE", "DROP", "CUT"], answer: 1 },
+  { question: "What does * mean in SELECT *?", options: ["All columns", "First column", "Asterisk only", "No column"], answer: 0 },
+  { question: "Which clause groups rows with the same values?", options: ["SORT BY", "GROUP BY", "CLUSTER BY", "MERGE BY"], answer: 1 },
+  { question: "What does PRIMARY KEY do?", options: ["Duplicates data", "Creates backup", "Uniquely identifies rows", "Groups data"], answer: 2 },
+  { question: "Which function returns the number of rows?", options: ["SUM()", "MAX()", "COUNT()", "ROWS()"], answer: 2 },
+  { question: "What is the default port of MySQL?", options: ["8080", "3306", "1521", "5432"], answer: 1 },
+  { question: "Which JOIN returns only matching records?", options: ["LEFT JOIN", "FULL JOIN", "RIGHT JOIN", "INNER JOIN"], answer: 3 },
+  { question: "Which JOIN returns all records from both tables?", options: ["CROSS JOIN", "FULL OUTER JOIN", "LEFT JOIN", "INNER JOIN"], answer: 1 },
+  { question: "Which data type stores large text?", options: ["VARCHAR", "TEXT", "CHAR", "INT"], answer: 1 },
+  { question: "Which constraint ensures uniqueness?", options: ["CHECK", "NOT NULL", "UNIQUE", "FOREIGN KEY"], answer: 2 },
+  { question: "What does AUTO_INCREMENT do?", options: ["Increases index size", "Auto updates row", "Creates a new user", "Automatically increases numeric field"], answer: 3 },
+  { question: "How do you prevent NULL values?", options: ["DEFAULT 0", "UNIQUE", "NOT NULL", "REQUIRED"], answer: 2 },
+  { question: "Which function returns current date?", options: ["GETDATE()", "DATE()", "NOW()", "TODAY()"], answer: 2 },
+  { question: "Which function is used to get the max value?", options: ["LARGE()", "MAX()", "TOP()", "BIGGEST()"], answer: 1 },
+  { question: "Which keyword is used to rename a table?", options: ["MODIFY", "CHANGE", "RENAME", "ALTER"], answer: 2 },
+  { question: "Which SQL statement changes a column’s type?", options: ["MODIFY", "ALTER TABLE", "UPDATE", "REDEFINE"], answer: 1 },
+  { question: "Which operator is used for pattern matching?", options: ["LIKE", "EQUAL", "MATCH", "COMPARE"], answer: 0 },
+  { question: "Which clause limits the number of rows returned?", options: ["TOP", "LIMIT", "ROWNUM", "OFFSET"], answer: 1 },
+  { question: "What is a foreign key used for?", options: ["Indexing", "Referencing another table", "Creating backups", "Encrypting data"], answer: 1 },
+  { question: "What command deletes a table?", options: ["DELETE TABLE", "DROP TABLE", "REMOVE TABLE", "DESTROY TABLE"], answer: 1 },
+  { question: "What is the purpose of the IFNULL() function?", options: ["Returns 0", "Replaces NULL with a value", "Deletes NULLs", "Converts to Boolean"], answer: 1 }
+];
+
+    const quizContainer = document.getElementById("quiz-container");
+    const resultContainer = document.getElementById("result");
+    let score = 0;
+
+    questions.forEach((q, index) => {
+      const box = document.createElement("div");
+      box.classList.add("p-3", "mb-4", "bg-light", "border", "rounded", "col-md-6");
+      box.innerHTML = `<h5>Q${index + 1}. ${q.question}</h5>`;
+
+      q.options.forEach((opt, i) => {
+        const btn = document.createElement("button");
+        btn.classList.add("btn", "btn-outline-primary", "d-block", "my-2", "w-100", "text-start");
+        btn.textContent = opt;
+
+        btn.addEventListener("click", function () {
+          if (box.classList.contains("answered")) return;
+
+          box.classList.add("answered");
+          const buttons = box.querySelectorAll("button");
+
+          buttons.forEach((b, idx) => {
+            b.classList.add("disabled");
+            b.disabled = true;
+            if (idx === q.answer) b.classList.replace("btn-outline-primary", "btn-success");
+          });
+
+          if (i !== q.answer) {
+            btn.classList.replace("btn-outline-primary", "btn-danger");
+          } else {
+            score++;
+          }
+
+          if (document.querySelectorAll(".answered").length === questions.length) {
+            resultContainer.innerHTML = `You scored <span class="text-success">${score}</span> out of <span class="text-primary">${questions.length}</span>`;
+          }
+        });
+
+        box.appendChild(btn);
+      });
+
+      quizContainer.appendChild(box);
+    });
+  </script>
+
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/typed.js/typed.min.js"></script>
+  <script src="../assets/vendor/waypoints/noframework.waypoints.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Naeem Liaqat(Portfolio)</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- ======= Mobile nav toggle button ======= -->
+  <!-- <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bi bi-list mobile-nav-toggle"></i></button> -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex flex-column justify-content-center">
+    <nav id="navbar" class="navbar nav-menu">
+      <ul>
+        <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+        <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+        <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+        <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a>
+          <li><a href="./interview.html" target="_blank" class="nav-link scrollto"><i class='bx bxs-file-pdf'></i> <span>InterView</span></a>
+        </li>
+        <li><a href="../msqs.html" target="_blank" class="nav-link scrollto"><i class='bx bxs-file-pdf'></i>
+          <span>MCQ's</span></a>
+        </li>
+      </ul>
+    </nav><!-- .nav-menu -->
+
+  </header><!-- End Header -->
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center">
+    <div class="container" data-aos="zoom-in" data-aos-delay="100">
+      <h1>Naeem Liaqat</h1>
+      <p>I'm <span class="typed"
+          data-typed-items="Software Enginee , PHP Developer, Laravel Developer, Yii Developer , Wordpress Developer , React & Node Js"></span>
+      </p>
+      <div class="social-links" target="_blank">
+        <a href="mailto:naeemliaqat41@yahoo.com" class="yahoo"><i class="bx bxl-yahoo"></i></a>
+        <a href="https://www.facebook.com/naeemliaqat41" class="facebook"><i class="bx bxl-facebook"
+            target="_blank"></i></a>
+        <a href="https://www.linkedin.com/in/naeem-liaqat-85970719b/" class="linkedin"><i class="bx bxl-linkedin"
+            target="_blank"></i></a>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+    <div class="container my-5">
+        <h2 class="mb-4 text-center">WordPress MCQ Quiz</h2>
+        <div id="quiz-container" class="row"></div>
+        <div id="result" class="text-center mt-4 fw-bold fs-4"></div>
+      </div>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>Naeem Liaqat</h3>
+      <p>Thanks For Visit my Portfolio.If You are interested to click Social link to contact me.</p>
+      <div class="social-links">
+        <a href="mailto:naeemliaqat41@yahoo.com" class="yahoo"><i class="bx bxl-yahoo"></i></a>
+        <a href="https://www.facebook.com/naeemliaqat41" class="facebook"><i class="bx bxl-facebook"
+            target="_blank"></i></a>
+        <a href="https://www.linkedin.com/in/naeem-liaqat-85970719b/" class="linkedin"><i class="bx bxl-linkedin"
+            target="_blank"></i></a>
+
+      </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>2025</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+
+        Designed by <strong> Naeem Liaqat</strong>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+
+
+  <script>
+    const questions = [
+        { question: "What is WordPress?", options: ["A database", "A CMS", "A programming language", "A browser"], answer: 1 },
+      { question: "WordPress is written in which programming language?", options: ["Java", "Python", "PHP", "Ruby"], answer: 2 },
+      { question: "Which of the following is a default post type in WordPress?", options: ["Event", "Gallery", "Post", "Project"], answer: 2 },
+      { question: "What is the function of a theme in WordPress?", options: ["Manages plugins", "Handles database", "Controls appearance", "Secures site"], answer: 2 },
+      { question: "Which file is the entry point for a WordPress theme?", options: ["index.php", "home.php", "style.css", "main.php"], answer: 0 },
+      { question: "What is a plugin in WordPress?", options: ["A style sheet", "An image", "A piece of code that adds functionality", "A theme component"], answer: 2 },
+      { question: "Which folder contains WordPress themes?", options: ["/plugins/", "/themes/", "/includes/", "/admin/"], answer: 1 },
+      { question: "What does the WordPress loop do?", options: ["Processes form input", "Iterates over posts", "Uploads images", "Saves settings"], answer: 1 },
+      { question: "Which function is used to include the header.php file?", options: ["include_header()", "get_header()", "load_header()", "require_header()"], answer: 1 },
+      { question: "Which function registers a custom post type?", options: ["add_post_type()", "register_type()", "register_post_type()", "new_post_type()"], answer: 2 },
+      { question: "What is the default database used by WordPress?", options: ["Oracle", "MongoDB", "MySQL", "PostgreSQL"], answer: 2 },
+      { question: "How are plugins installed in WordPress?", options: ["Copy to themes folder", "Paste in core folder", "Upload in plugins folder", "Upload to admin folder"], answer: 2 },
+      { question: "What is wp-config.php used for?", options: ["Theme settings", "User login", "Database configuration", "Security policy"], answer: 2 },
+      { question: "Which function is used to retrieve post content?", options: ["the_text()", "get_post()", "the_content()", "get_content()"], answer: 2 },
+      { question: "Which of the following is a popular WordPress plugin?", options: ["WooCommerce", "Laravel", "Django", "ReactPress"], answer: 0 },
+      { question: "What is the role of functions.php file?", options: ["Stores admin data", "Styles the site", "Adds theme functionality", "Manages widgets"], answer: 2 },
+      { question: "How do you create a child theme?", options: ["Use Plugin", "Modify style.css only", "Create new folder with style.css and functions.php", "Rename parent theme"], answer: 2 },
+      { question: "Which hook runs after WordPress is fully loaded?", options: ["wp_footer", "wp_head", "init", "wp_loaded"], answer: 3 },
+      { question: "What is an action hook?", options: ["Handles database", "Triggers at specific points", "Secures login", "Saves CSS"], answer: 1 },
+      { question: "Which function adds a menu in WordPress?", options: ["add_menu()", "register_menu()", "add_theme_menu()", "register_nav_menus()"], answer: 3 },
+      { question: "Which tag displays the site title?", options: ["<?php get_title(); ?>", "<?php wp_title(); ?>", "<?php bloginfo('name'); ?>", "<?php the_title(); ?>"], answer: 2 },
+      { question: "What does wp_enqueue_script() do?", options: ["Renders HTML", "Fetches posts", "Loads JavaScript", "Connects to database"], answer: 2 },
+      { question: "Where do widgets appear in WordPress?", options: ["Footer only", "Header only", "Sidebar and footer", "Posts only"], answer: 2 },
+      { question: "How can you improve WordPress security?", options: ["Use weak passwords", "Disable updates", "Install security plugins", "Allow file editing"], answer: 2 },
+      { question: "Which file handles the 404 error in themes?", options: ["error.php", "notfound.php", "404.php", "missing.php"], answer: 2 },
+      { question: "What is the WordPress Codex?", options: ["A plugin", "Official documentation", "A theme", "A CMS"], answer: 1 },
+      { question: "Which table stores user data in WordPress?", options: ["wp_users", "wp_admins", "wp_accounts", "wp_members"], answer: 0 },
+      { question: "Which function is used to add custom widgets?", options: ["add_widget()", "register_widget()", "create_widget()", "init_widget()"], answer: 1 },
+      { question: "What are shortcodes in WordPress?", options: ["CSS snippets", "Database queries", "Placeholders for functions", "JavaScript functions"], answer: 2 },
+      { question: "Which file controls the layout of blog posts?", options: ["single.php", "archive.php", "blog.php", "post.php"], answer: 0 }
+    ];
+
+    const quizContainer = document.getElementById("quiz-container");
+    const resultContainer = document.getElementById("result");
+    let score = 0;
+
+    questions.forEach((q, index) => {
+      const box = document.createElement("div");
+      box.classList.add("p-3", "mb-4", "bg-light", "border", "rounded", "col-md-6");
+      box.innerHTML = `<h5>Q${index + 1}. ${q.question}</h5>`;
+
+      q.options.forEach((opt, i) => {
+        const btn = document.createElement("button");
+        btn.classList.add("btn", "btn-outline-primary", "d-block", "my-2", "w-100", "text-start");
+        btn.textContent = opt;
+
+        btn.addEventListener("click", function () {
+          if (box.classList.contains("answered")) return;
+
+          box.classList.add("answered");
+          const buttons = box.querySelectorAll("button");
+
+          buttons.forEach((b, idx) => {
+            b.classList.add("disabled");
+            b.disabled = true;
+            if (idx === q.answer) b.classList.replace("btn-outline-primary", "btn-success");
+          });
+
+          if (i !== q.answer) {
+            btn.classList.replace("btn-outline-primary", "btn-danger");
+          } else {
+            score++;
+          }
+
+          if (document.querySelectorAll(".answered").length === questions.length) {
+            resultContainer.innerHTML = `You scored <span class="text-success">${score}</span> out of <span class="text-primary">${questions.length}</span>`;
+          }
+        });
+
+        box.appendChild(btn);
+      });
+
+      quizContainer.appendChild(box);
+    });
+  </script>
+
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/typed.js/typed.min.js"></script>
+  <script src="../assets/vendor/waypoints/noframework.waypoints.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
