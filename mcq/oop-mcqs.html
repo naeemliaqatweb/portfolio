@@ -36,10 +36,11 @@
         <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
         <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
         <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a>
-          <li><a href="./interview.html" target="_blank" class="nav-link scrollto"><i class='bx bxs-file-pdf'></i> <span>InterView</span></a>
+        <li><a href="./interview.html" target="_blank" class="nav-link scrollto"><i class='bx bxs-file-pdf'></i>
+            <span>InterView</span></a>
         </li>
         <li><a href="../msqs.html" target="_blank" class="nav-link scrollto"><i class='bx bx-list-check'></i>
-          <span>MCQ's</span></a>
+            <span>MCQ's</span></a>
         </li>
       </ul>
     </nav><!-- .nav-menu -->
@@ -64,12 +65,11 @@
 
   <main id="main">
     <div class="container my-5">
-        <h2 class="mb-4 text-center">OOP MCQ Quiz</h2>
-        <div id="quiz-container" class="row"></div>
-        <div id="result" class="text-center mt-4 fw-bold fs-4"></div>
-      </div>
-
-  </main><!-- End #main -->
+      <h2 class="mb-4 text-center" id="quiz-title">OOP MCQ Quiz</h2>
+      <div id="quiz-container" class="row"></div>
+      <div id="result" class="text-center mt-4 fw-bold fs-4"></div>
+    </div>
+  </main>
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
@@ -101,52 +101,504 @@
 
 
   <script>
-    const questions = [
-    { question: "What does OOP stand for?", options: ["Object Oriented Programming", "Ordered Object Programming", "Original Object Plan", "Object Operational Process"], answer: 0 },
-      { question: "Which of the following is not a feature of OOP?", options: ["Encapsulation", "Polymorphism", "Inheritance", "Compilation"], answer: 3 },
-      { question: "What is encapsulation?", options: ["Wrapping data and code together", "Overriding functions", "Multiple inheritance", "Deriving classes"], answer: 0 },
-      { question: "What is polymorphism?", options: ["Same function name, different implementation", "Hiding data", "Base class creation", "Function chaining"], answer: 0 },
-      { question: "Which keyword is used to create a class in C++?", options: ["class", "object", "def", "function"], answer: 0 },
-      { question: "What is inheritance?", options: ["Acquiring properties from base class", "Modifying data", "Storing variables", "Converting data types"], answer: 0 },
-      { question: "Which concept allows treating objects of different classes in the same way?", options: ["Polymorphism", "Inheritance", "Abstraction", "Encapsulation"], answer: 0 },
-      { question: "What does abstraction mean in OOP?", options: ["Hiding internal details", "Showing all details", "Creating loops", "Handling exceptions"], answer: 0 },
-      { question: "Which of these supports multiple inheritance?", options: ["C++", "Java", "Python", "C#"], answer: 0 },
-      { question: "Which of these languages is fully OOP?", options: ["Java", "C", "Python", "PHP"], answer: 0 },
-      { question: "What is a constructor?", options: ["A special function to initialize objects", "A method to destroy objects", "A loop initializer", "A condition checker"], answer: 0 },
-      { question: "Destructor is used for?", options: ["Destroying object", "Creating object", "Calling methods", "Cloning object"], answer: 0 },
-      { question: "Which of the following is not a type of inheritance?", options: ["Sequential", "Single", "Multiple", "Multilevel"], answer: 0 },
-      { question: "How is method overloading achieved?", options: ["Same method name with different parameters", "Same method name in child class", "Multiple classes", "Same data type"], answer: 0 },
-      { question: "Which of the following is used to access class members?", options: [". (dot)", "#", "::", "->"], answer: 0 },
-      { question: "What is the default access specifier for class members?", options: ["private", "public", "protected", "none"], answer: 0 },
-      { question: "What does the 'this' keyword refer to?", options: ["Current object", "Parent class", "Child object", "Constructor"], answer: 0 },
-      { question: "Which OOP principle is used in hiding sensitive data?", options: ["Encapsulation", "Inheritance", "Polymorphism", "Overloading"], answer: 0 },
-      { question: "Which language was the first to implement OOP?", options: ["Simula", "C++", "Java", "Python"], answer: 0 },
-      { question: "Which keyword is used for inheritance in C++?", options: [":", "extends", "inherits", "derive"], answer: 0 },
-      { question: "Can abstract class have constructors?", options: ["Yes", "No", "Only in Java", "Only in C++"], answer: 0 },
-      { question: "Which principle allows objects to take many forms?", options: ["Polymorphism", "Inheritance", "Encapsulation", "Casting"], answer: 0 },
-      { question: "Private members are accessible in?", options: ["Same class", "Derived class", "Outside class", "All of the above"], answer: 0 },
-      { question: "Which access specifier allows access from derived class only?", options: ["protected", "public", "private", "static"], answer: 0 },
-      { question: "Which feature is not supported by OOP?", options: ["Global variables", "Abstraction", "Polymorphism", "Encapsulation"], answer: 0 },
-      { question: "Which function type allows overriding in subclass?", options: ["Virtual", "Static", "Final", "Private"], answer: 0 },
-      { question: "Composition is?", options: ["Has-a relationship", "Is-a relationship", "Copy constructor", "Data hiding"], answer: 0 },
-      { question: "What is an interface?", options: ["A contract for classes", "A view layer", "A header file", "A database connection"], answer: 0 },
-      { question: "In Java, interfaces can contain?", options: ["Only method signatures", "Constructors", "Main method", "Instance variables"], answer: 0 },
-      { question: "Which of the following represents class hierarchy?", options: ["UML diagram", "Flowchart", "Class tree", "ERD"], answer: 0 }
-    ];
+    const urlParams = new URLSearchParams(window.location.search);
+    const level = urlParams.get('level') || 'basic';
+    const scores = JSON.parse(localStorage.getItem('oop_quiz_scores') || '{}');
+
+    const currentPage = window.location.pathname.split('/').pop(); // dynamic filename
+
+    if (level === 'intermediate' && (!scores.basic || scores.basic < 20)) {
+      alert("Please complete Basic level with at least 20 points to unlock Intermediate.");
+      window.location.href = `${currentPage}?level=basic`;
+    }
+
+    if (level === 'advanced' && (!scores.intermediate || scores.intermediate < 20)) {
+      alert("Please complete Intermediate level with at least 20 points to unlock Advanced.");
+      window.location.href = `${currentPage}?level=intermediate`;
+    }
+
+    if (level === 'basic' && scores.basic >= 20) {
+      alert("You've already passed Basic. Redirecting to Intermediate.");
+      window.location.href = `${currentPage}?level=intermediate`;
+    }
+
+
+    // Load questions per level
+    const questionSets = {
+      basic: [
+        {
+          question: "What does OOP stand for in PHP?",
+          options: ["Object-Oriented Programming", "Original Object Plan", "Ordered Object Processing", "Object Operational Process"],
+          answer: 0
+        },
+        {
+          question: "Which keyword is used to define a class in PHP?",
+          options: ["class", "define", "function", "object"],
+          answer: 0
+        },
+        {
+          question: "How do you create an object in PHP?",
+          options: ["$obj = new ClassName();", "$obj = ClassName->new();", "$obj = create ClassName();", "$obj = new->ClassName();"],
+          answer: 0
+        },
+        {
+          question: "Which method is automatically called when an object is created?",
+          options: ["__construct()", "__create()", "__init()", "__start()"],
+          answer: 0
+        },
+        {
+          question: "Which method is automatically called when an object is destroyed?",
+          options: ["__destruct()", "__delete()", "__unset()", "__remove()"],
+          answer: 0
+        },
+        {
+          question: "Which visibility allows access from anywhere?",
+          options: ["public", "private", "protected", "static"],
+          answer: 0
+        },
+        {
+          question: "Which visibility restricts access to within the class only?",
+          options: ["private", "public", "protected", "static"],
+          answer: 0
+        },
+        {
+          question: "Which visibility allows access within the class and its subclasses?",
+          options: ["protected", "private", "public", "static"],
+          answer: 0
+        },
+        {
+          question: "What is the purpose of the 'this' keyword in PHP?",
+          options: ["Refers to the current object", "Refers to the parent class", "Refers to a static method", "Refers to a global variable"],
+          answer: 0
+        },
+        {
+          question: "Which symbol is used to access object properties and methods?",
+          options: ["->", "::", ".", "=>"],
+          answer: 0
+        },
+        {
+          question: "What is encapsulation in OOP?",
+          options: ["Wrapping data and methods into a single unit", "Inheriting properties from another class", "Overriding methods", "Defining multiple methods with the same name"],
+          answer: 0
+        },
+        {
+          question: "What is inheritance in OOP?",
+          options: ["A class acquiring properties and methods from another class", "Wrapping data and methods into a single unit", "Overriding methods", "Defining multiple methods with the same name"],
+          answer: 0
+        },
+        {
+          question: "What is polymorphism in OOP?",
+          options: ["Ability of different classes to be treated as instances of the same class through a common interface", "Wrapping data and methods into a single unit", "A class acquiring properties and methods from another class", "Defining multiple methods with the same name"],
+          answer: 0
+        },
+        {
+          question: "Which keyword is used to inherit a class in PHP?",
+          options: ["extends", "implements", "inherits", "uses"],
+          answer: 0
+        },
+        {
+          question: "Which keyword is used to implement an interface in PHP?",
+          options: ["implements", "extends", "inherits", "uses"],
+          answer: 0
+        },
+        {
+          question: "What is the default visibility of class properties and methods in PHP?",
+          options: ["public", "private", "protected", "static"],
+          answer: 0
+        },
+        {
+          question: "Which magic method is called when an object is cloned?",
+          options: ["__clone()", "__copy()", "__duplicate()", "__replicate()"],
+          answer: 0
+        },
+        {
+          question: "Which magic method is called when an object is serialized?",
+          options: ["__sleep()", "__serialize()", "__save()", "__store()"],
+          answer: 0
+        },
+        {
+          question: "Which magic method is called when an object is unserialized?",
+          options: ["__wakeup()", "__unserialize()", "__load()", "__retrieve()"],
+          answer: 0
+        },
+        {
+          question: "Which function is used to check if a class exists in PHP?",
+          options: ["class_exists()", "isset_class()", "exists_class()", "is_class()"],
+          answer: 0
+        },
+        {
+          question: "Which function is used to check if a method exists in a class?",
+          options: ["method_exists()", "isset_method()", "exists_method()", "is_method()"],
+          answer: 0
+        },
+        {
+          question: "Which function is used to check if a property exists in a class?",
+          options: ["property_exists()", "isset_property()", "exists_property()", "is_property()"],
+          answer: 0
+        },
+        {
+          question: "Which function is used to get the class name of an object?",
+          options: ["get_class()", "class_name()", "object_class()", "name_class()"],
+          answer: 0
+        },
+        {
+          question: "Which function is used to get the parent class name of an object?",
+          options: ["get_parent_class()", "parent_class()", "object_parent()", "class_parent()"],
+          answer: 0
+        },
+        {
+          question: "Which function is used to get the methods of a class?",
+          options: ["get_class_methods()", "class_methods()", "methods_class()", "object_methods()"],
+          answer: 0
+        },
+        {
+          question: "Which function is used to get the properties of a class?",
+          options: ["get_class_vars()", "class_properties()", "properties_class()", "object_properties()"],
+          answer: 0
+        },
+        {
+          question: "Which function is used to get the object variables?",
+          options: ["get_object_vars()", "object_variables()", "variables_object()", "object_vars()"],
+          answer: 0
+        },
+        {
+          question: "Which function is used to check if an object is an instance of a class?",
+          options: ["instanceof", "is_instance()", "instance_of()", "isinstance()"],
+          answer: 0
+        },
+        {
+          question: "Which keyword is used to define a constant in a class?",
+          options: ["const", "define", "constant", "static"],
+          answer: 0
+        },
+        {
+          question: "Which keyword is used to define a static property or method in a class?",
+          options: ["static", "const", "define", "final"],
+          answer: 0
+        }
+      ],
+      intermediate: [
+        {
+          question: "What is the purpose of the '__call()' magic method in PHP?",
+          options: ["To handle calls to inaccessible or non-existing methods", "To serialize an object", "To construct an object", "To load a class"],
+          answer: 0
+        },
+        {
+          question: "What is the '__get()' magic method used for?",
+          options: ["To get the value of inaccessible or non-existing properties", "To access a class constant", "To get parent class", "To trigger on method call"],
+          answer: 0
+        },
+        {
+          question: "What does the '__set()' magic method handle?",
+          options: ["Writing to inaccessible or non-existing properties", "Serializing an object", "Creating a class", "Setting a method"],
+          answer: 0
+        },
+        {
+          question: "What is the function of '__isset()' in PHP?",
+          options: ["It is triggered by calling isset() on inaccessible properties", "Checks if object exists", "Serializes property", "None of the above"],
+          answer: 0
+        },
+        {
+          question: "What does '__unset()' do?",
+          options: ["Handles unset() calls on inaccessible properties", "Unsets a class", "Destroys the constructor", "Triggers __destruct()"],
+          answer: 0
+        },
+        {
+          question: "What is a static method in PHP?",
+          options: ["A method that can be called without instantiating the class", "A method that destroys objects", "A method that triggers constructor", "A private method"],
+          answer: 0
+        },
+        {
+          question: "How to call a static method in PHP?",
+          options: ["ClassName::methodName();", "$class->methodName();", "methodName::ClassName();", "new ClassName();"],
+          answer: 0
+        },
+        {
+          question: "What is late static binding in PHP?",
+          options: ["Allows static methods to reference the called class", "Binding methods at compile time", "Static constructor creation", "Run-time error prevention"],
+          answer: 0
+        },
+        {
+          question: "How to define a constant inside a class?",
+          options: ["const VERSION = '1.0';", "define('VERSION', 1.0);", "static $VERSION = 1.0;", "$VERSION = 1.0;"],
+          answer: 0
+        },
+        {
+          question: "How to access a constant inside a class?",
+          options: ["self::CONSTANT_NAME", "this->CONSTANT_NAME", "$this::CONSTANT_NAME", "parent->CONSTANT_NAME"],
+          answer: 0
+        },
+        {
+          question: "What does 'self::' refer to?",
+          options: ["The current class (static context)", "Parent class", "Current object", "Instance variable"],
+          answer: 0
+        },
+        {
+          question: "What does 'parent::' do in PHP?",
+          options: ["Calls methods or properties from parent class", "Defines a parent method", "Initializes object", "References current class"],
+          answer: 0
+        },
+        {
+          question: "What is the result of using final on a method?",
+          options: ["It cannot be overridden", "It becomes public", "It is static", "It becomes abstract"],
+          answer: 0
+        },
+        {
+          question: "Which interface helps in iterating objects in PHP?",
+          options: ["Iterator", "Iterable", "Traversable", "Loopable"],
+          answer: 0
+        },
+        {
+          question: "Which interface allows counting elements in an object?",
+          options: ["Countable", "Measurable", "Count", "Iterable"],
+          answer: 0
+        },
+        {
+          question: "What is object composition?",
+          options: ["Having other class objects as members", "Extending multiple classes", "Using traits", "Object inheritance"],
+          answer: 0
+        },
+        {
+          question: "Which function returns the list of traits used by a class?",
+          options: ["class_uses()", "get_traits()", "uses_traits()", "get_class_traits()"],
+          answer: 0
+        },
+        {
+          question: "Which PHP version introduced traits?",
+          options: ["5.4", "5.2", "5.6", "7.0"],
+          answer: 0
+        },
+        {
+          question: "What does 'interface segregation principle' mean?",
+          options: ["Clients should not be forced to implement interfaces they don’t use", "Split interfaces into methods", "Avoid multiple inheritance", "Use interfaces sparingly"],
+          answer: 0
+        },
+        {
+          question: "Which magic method allows object to be invoked like a function?",
+          options: ["__invoke()", "__call()", "__run()", "__exec()"],
+          answer: 0
+        },
+        {
+          question: "What is the main benefit of interfaces?",
+          options: ["Enforcing a contract for classes", "Reducing file size", "Auto loading", "Optimizing memory"],
+          answer: 0
+        },
+        {
+          question: "Can interfaces have properties?",
+          options: ["No", "Yes", "Only static", "Only constants"],
+          answer: 0
+        },
+        {
+          question: "What does 'abstract' keyword prevent?",
+          options: ["Instantiation of the class", "Method execution", "File loading", "Trait usage"],
+          answer: 0
+        },
+        {
+          question: "What is a constructor override?",
+          options: ["Redefining parent class constructor in child", "Making constructor final", "Overriding with interface", "None of the above"],
+          answer: 0
+        },
+        {
+          question: "What is interface inheritance?",
+          options: ["Interface extending another interface", "Class implementing multiple interfaces", "Object creating another", "Trait being inherited"],
+          answer: 0
+        },
+        {
+          question: "What is dependency injection?",
+          options: ["Passing objects as parameters instead of instantiating inside a class", "Using constructor always", "Using interface methods", "None of the above"],
+          answer: 0
+        },
+        {
+          question: "Which keyword makes a property shared among all objects?",
+          options: ["static", "const", "global", "shared"],
+          answer: 0
+        },
+        {
+          question: "What is the result of calling a method without creating an object?",
+          options: ["It must be static", "It will cause error", "It returns NULL", "Object gets created automatically"],
+          answer: 0
+        }
+      ],
+      advanced: [
+        {
+          question: "What is LSB (Late Static Binding) in PHP?",
+          options: ["Refers to class that was called at runtime in a static method", "Binding variable late", "Binding interfaces", "None of the above"],
+          answer: 0
+        },
+        {
+          question: "Which magic method handles undefined static method calls?",
+          options: ["__callStatic()", "__staticCall()", "__invokeStatic()", "__static()"],
+          answer: 0
+        },
+        {
+          question: "What is a trait conflict?",
+          options: ["When two traits have methods with the same name", "Trait not loaded", "Trait overload", "Interface issue"],
+          answer: 0
+        },
+        {
+          question: "How can you resolve trait method conflicts?",
+          options: ["insteadof", "override", "final", "bind"],
+          answer: 0
+        },
+        {
+          question: "Can you use a trait in another trait?",
+          options: ["Yes", "No", "Only in interfaces", "Only in abstract class"],
+          answer: 0
+        },
+        {
+          question: "What is SPL in PHP?",
+          options: ["Standard PHP Library", "System PHP Loader", "Simple PHP Language", "Standard Page Language"],
+          answer: 0
+        },
+        {
+          question: "What does the 'Traversable' interface do?",
+          options: ["Checks if object can be used in foreach", "Allows method chaining", "Interface for constants", "None"],
+          answer: 0
+        },
+        {
+          question: "What is 'Reflection' in PHP?",
+          options: ["Inspect classes and methods at runtime", "Creates traits", "Serializes objects", "Loads classes"],
+          answer: 0
+        },
+        {
+          question: "Which interface allows array-like access to an object?",
+          options: ["ArrayAccess", "Iterator", "Countable", "Arrayable"],
+          answer: 0
+        },
+        {
+          question: "Which interface allows looping through objects?",
+          options: ["Iterator", "Traversable", "SeekableIterator", "Countable"],
+          answer: 0
+        },
+        {
+          question: "What is object overloading?",
+          options: ["Handling access to undefined methods/properties", "Calling many classes", "Creating arrays", "None"],
+          answer: 0
+        },
+        {
+          question: "What is covariance?",
+          options: ["Overriding method can return more specific type", "Return any type", "Overloading method", "Trait inheritance"],
+          answer: 0
+        },
+        {
+          question: "What is contravariance?",
+          options: ["Parameters in overridden method can be more general", "Return value is strict", "Use of interfaces", "None of the above"],
+          answer: 0
+        },
+        {
+          question: "What does type hinting in PHP enforce?",
+          options: ["Parameter must be of given type", "Interface only", "Nullable properties", "None"],
+          answer: 0
+        },
+        {
+          question: "What is method chaining?",
+          options: ["Calling multiple methods in a single statement", "Extending multiple methods", "Using traits", "Static method call"],
+          answer: 0
+        },
+        {
+          question: "What is the benefit of using namespaces?",
+          options: ["Avoid name collisions", "Speed up code", "Increase inheritance", "Prevent interface usage"],
+          answer: 0
+        },
+        {
+          question: "Which keyword is used to define namespace?",
+          options: ["namespace", "use", "class", "trait"],
+          answer: 0
+        },
+        {
+          question: "Which keyword imports other namespaces?",
+          options: ["use", "import", "require", "include"],
+          answer: 0
+        },
+        {
+          question: "What does SPLException class do?",
+          options: ["Standard exception type for SPL", "Base error handler", "Trait issue", "Reflection handler"],
+          answer: 0
+        },
+        {
+          question: "Which class is used to work with filesystem iterators?",
+          options: ["FilesystemIterator", "DirectoryIterator", "RecursiveIterator", "ArrayIterator"],
+          answer: 0
+        },
+        {
+          question: "What is the visibility of properties in interfaces?",
+          options: ["Interfaces cannot have properties", "public", "private", "protected"],
+          answer: 0
+        },
+        {
+          question: "What is the purpose of '__toString()'?",
+          options: ["Convert object to string when treated as string", "Converts object to array", "Handles echo", "None"],
+          answer: 0
+        },
+        {
+          question: "What is the use of '__debugInfo()' in PHP?",
+          options: ["Customizes info shown by var_dump()", "Hides class members", "Sets constants", "None"],
+          answer: 0
+        },
+        {
+          question: "Which of the following is used to handle object comparison?",
+          options: ["__equals()", "__compare()", "Manual comparison", "__match()"],
+          answer: 0
+        },
+        {
+          question: "Which SPL class allows sorting objects like arrays?",
+          options: ["ArrayObject", "ArrayIterator", "SplObjectStorage", "SortObject"],
+          answer: 0
+        },
+        {
+          question: "What is SplObjectStorage?",
+          options: ["Stores unique objects like array", "Serializes class", "Trait loader", "Namespace handler"],
+          answer: 0
+        },
+        {
+          question: "What happens if __construct() is private?",
+          options: ["Cannot instantiate directly (singleton pattern)", "Static method error", "Class not loaded", "Trait cannot be used"],
+          answer: 0
+        },
+        {
+          question: "What is the purpose of final class?",
+          options: ["Cannot be extended", "Can only be static", "No constructor", "Abstract usage only"],
+          answer: 0
+        },
+        {
+          question: "What will happen if a trait method conflicts with a parent class method?",
+          options: ["Parent class method takes precedence", "Error", "Trait overrides always", "None"],
+          answer: 0
+        },
+        {
+          question: "What is the purpose of static:: keyword?",
+          options: ["Late static binding reference", "Regular class reference", "Trait calling", "Destructor hook"],
+          answer: 0
+        }
+      ]
+    };
+
+    const questions = questionSets[level];
+    const quizTitle = document.getElementById("quiz-title");
+    quizTitle.textContent += ` - ${level.charAt(0).toUpperCase() + level.slice(1)} Level`;
 
     const quizContainer = document.getElementById("quiz-container");
     const resultContainer = document.getElementById("result");
     let score = 0;
 
     questions.forEach((q, index) => {
+      // Combine options with their original index
+      const shuffledOptions = q.options.map((opt, i) => ({ text: opt, isCorrect: i === q.answer }));
+
+      // Shuffle the array
+      for (let i = shuffledOptions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+      }
+
       const box = document.createElement("div");
       box.classList.add("p-3", "mb-4", "bg-light", "border", "rounded", "col-md-6");
       box.innerHTML = `<h5>Q${index + 1}. ${q.question}</h5>`;
 
-      q.options.forEach((opt, i) => {
+      shuffledOptions.forEach((optObj) => {
         const btn = document.createElement("button");
         btn.classList.add("btn", "btn-outline-primary", "d-block", "my-2", "w-100", "text-start");
-        btn.textContent = opt;
+        btn.textContent = optObj.text;
 
         btn.addEventListener("click", function () {
           if (box.classList.contains("answered")) return;
@@ -157,17 +609,46 @@
           buttons.forEach((b, idx) => {
             b.classList.add("disabled");
             b.disabled = true;
-            if (idx === q.answer) b.classList.replace("btn-outline-primary", "btn-success");
+
+            if (shuffledOptions[idx].isCorrect) {
+              b.classList.replace("btn-outline-primary", "btn-success");
+            }
           });
 
-          if (i !== q.answer) {
+          if (!optObj.isCorrect) {
             btn.classList.replace("btn-outline-primary", "btn-danger");
           } else {
             score++;
           }
 
           if (document.querySelectorAll(".answered").length === questions.length) {
-            resultContainer.innerHTML = `You scored <span class="text-success">${score}</span> out of <span class="text-primary">${questions.length}</span>`;
+            const scores = JSON.parse(localStorage.getItem('oop_quiz_scores') || '{}');
+            scores[level] = score;
+            localStorage.setItem('oop_quiz_scores', JSON.stringify(scores));
+
+            const resultMsg = `You scored <span class="text-success">${score}</span> out of <span class="text-primary">${questions.length}</span>`;
+            resultContainer.innerHTML = resultMsg;
+
+            // Show total if on advanced
+            if (level === 'advanced') {
+              const total = (scores.basic || 0) + (scores.intermediate || 0) + (scores.advanced || 0);
+              resultContainer.innerHTML += `<br>Total Score: <span class="text-primary">${total}</span> / 90`;
+            }
+
+            // Show Next Level button only if score >= 20
+            if (score >= 20) {
+              const nextLevel = level === 'basic' ? 'intermediate' :
+                level === 'intermediate' ? 'advanced' : null;
+
+              if (nextLevel) {
+                const btn = document.createElement("a");
+                btn.href = `${currentPage}?level=${nextLevel}`;
+                btn.className = "btn btn-success mt-4";
+                btn.textContent = `Start ${nextLevel.charAt(0).toUpperCase() + nextLevel.slice(1)} Level`;
+                resultContainer.appendChild(document.createElement("br"));
+                resultContainer.appendChild(btn);
+              }
+            }
           }
         });
 
@@ -176,8 +657,8 @@
 
       quizContainer.appendChild(box);
     });
-  </script>
 
+  </script>
 
   <!-- Vendor JS Files -->
   <script src="../assets/vendor/aos/aos.js"></script>

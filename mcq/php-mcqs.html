@@ -64,12 +64,11 @@
 
   <main id="main">
     <div class="container my-5">
-        <h2 class="mb-4 text-center">PHP MCQ Quiz</h2>
+        <h2 class="mb-4 text-center" id="quiz-title">PHP MCQ Quiz</h2>
         <div id="quiz-container" class="row"></div>
         <div id="result" class="text-center mt-4 fw-bold fs-4"></div>
       </div>
-
-  </main><!-- End #main -->
+  </main>
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
@@ -99,84 +98,217 @@
       class="bi bi-arrow-up-short"></i></a>
 
 
+      <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const level = urlParams.get('level') || 'basic';
+        const scores = JSON.parse(localStorage.getItem('php_quiz_scores') || '{}');
+    
+        const currentPage = window.location.pathname.split('/').pop(); // dynamic filename
+    
+        if (level === 'intermediate' && (!scores.basic || scores.basic < 20)) {
+          alert("Please complete Basic level with at least 20 points to unlock Intermediate.");
+          window.location.href = `${currentPage}?level=basic`;
+        }
+    
+        if (level === 'advanced' && (!scores.intermediate || scores.intermediate < 20)) {
+          alert("Please complete Intermediate level with at least 20 points to unlock Advanced.");
+          window.location.href = `${currentPage}?level=intermediate`;
+        }
+    
+        if (level === 'basic' && scores.basic >= 20) {
+          alert("You've already passed Basic. Redirecting to Intermediate.");
+          window.location.href = `${currentPage}?level=intermediate`;
+        }
+    
+    
+        // Load questions per level
+        const questionSets = {
+          basic: [
+            { question: "What does PHP stand for?", options: ["Hypertext Preprocessor", "Private Home Page", "Personal Hypertext Processor", "Precompiled HTML Page"], answer: 0 },
+            { question: "Which symbol is used to start a PHP variable?", options: ["$", "#", "@", "&"], answer: 0 },
+            { question: "Which of these is used to output data in PHP?", options: ["echo", "print", "write", "Both echo and print"], answer: 3 },
+            { question: "PHP files have the extension?", options: [".php", ".html", ".js", ".xml"], answer: 0 },
+            { question: "Which tag is used to start PHP code?", options: ["<?php", "<script>", "<?", "<php>"], answer: 0 },
+            { question: "PHP is a ____ language?", options: ["Scripting", "Markup", "Styling", "Assembly"], answer: 0 },
+            { question: "Which function is used to get the length of a string?", options: ["strlen()", "count()", "size()", "length()"], answer: 0 },
+            { question: "Which superglobal is used to collect form data?", options: ["\$_POST", "\$_FORM", "\$_GET", "\$_DATA"], answer: 0 },
+            { question: "Which function is used to include another PHP file?", options: ["include()", "insert()", "load()", "require_once()"], answer: 0 },
+            { question: "What is the default file inclusion behavior of include()?", options: ["Continues on error", "Stops on error", "Skips on error", "Reloads on error"], answer: 0 },
+            { question: "Which operator is used for concatenation in PHP?", options: [".", "+", "&", "::"], answer: 0 },
+            { question: "Which one is NOT a PHP data type?", options: ["float", "boolean", "decimal", "array"], answer: 2 },
+            { question: "What is the output of echo 2 + '3 apples'?", options: ["5", "2", "23 apples", "Error"], answer: 0 },
+            { question: "Which function checks if a variable is set?", options: ["isset()", "empty()", "defined()", "check()"], answer: 0 },
+            { question: "Which function checks if a variable is empty?", options: ["empty()", "isset()", "null()", "check()"], answer: 0 },
+            { question: "How can you create an array in PHP?", options: ["array()", "list()", "object()", "arr()"], answer: 0 },
+            { question: "What is the correct way to define a constant in PHP?", options: ["define('NAME', 'value')", "const NAME = value;", "\$NAME = value;", "let NAME = value;"], answer: 0 },
+            { question: "Which one is a PHP comparison operator?", options: ["==", "+=", "::", "==="], answer: 0 },
+            { question: "Which function is used to count array elements?", options: ["count()", "length()", "size()", "total()"], answer: 0 },
+            { question: "Which function is used to redirect a user?", options: ["header('Location: url')", "redirect()", "navigate()", "goto()"], answer: 0 },
+            { question: "PHP runs on which side?", options: ["Server", "Client", "Browser", "UI"], answer: 0 },
+            { question: "Which superglobal contains cookies?", options: ["\$_COOKIE", "\$_GET", "\$_POST", "\$_SESSION"], answer: 0 },
+            { question: "What does isset(\$var) return if \$var = 0?", options: ["true", "false", "null", "error"], answer: 0 },
+            { question: "Which version of PHP introduced type declarations?", options: ["PHP 7", "PHP 5.3", "PHP 8", "PHP 6"], answer: 0 },
+            { question: "What is the default port for MySQL in PHP?", options: ["3306", "80", "21", "1433"], answer: 0 },
+            { question: "Which symbol is used for comments in PHP?", options: ["//", "#", "/* */", "All of the above"], answer: 3 },
+            { question: "What function gets the current script filename?", options: ["\$_SERVER['PHP_SELF']", "basename()", "current_file()", "script_name()"], answer: 0 },
+            { question: "Which keyword is used for loops?", options: ["foreach", "while", "for", "All of the above"], answer: 3 },
+            { question: "Which function ends script execution?", options: ["exit()", "die()", "return", "Both exit and die"], answer: 3 },
+            { question: "How do you get the current date in PHP?", options: ["date()", "getDate()", "currentDate()", "today()"], answer: 0 }
+          ],
 
-  <script>
-    const questions = [
-    { question: "What does PHP stand for?", options: ["Hypertext Preprocessor", "Preprocessed Hypertext Page", "Personal Home Page", "Private Home Page"], answer: 0 },
-      { question: "Which symbol is used to declare a variable in PHP?", options: ["$", "#", "@", "&"], answer: 0 },
-      { question: "Which of the following is the correct way to end a PHP statement?", options: [";", ".", ":", "!"], answer: 0 },
-      { question: "Which function is used to output text in PHP?", options: ["echo", "print", "write", "Both echo and print"], answer: 3 },
-      { question: "How do you write a single-line comment in PHP?", options: ["// comment", "# comment", "/* comment */", "Both // and #"], answer: 3 },
-      { question: "Which superglobal is used to collect form data sent with POST?", options: ["$_POST", "$_GET", "$_REQUEST", "$_FORM"], answer: 0 },
-      { question: "How do you create a function in PHP?", options: ["function myFunc()", "create myFunc()", "define myFunc()", "method myFunc()"], answer: 0 },
-      { question: "Which operator is used for concatenation in PHP?", options: [".", "+", "&", ","], answer: 0 },
-      { question: "Which function is used to count elements in an array?", options: ["count()", "size()", "length()", "total()"], answer: 0 },
-      { question: "Which function is used to include another file in PHP?", options: ["include", "require", "Both include and require", "import"], answer: 2 },
-      { question: "What is the default file extension of PHP files?", options: [".php", ".html", ".xml", ".js"], answer: 0 },
-      { question: "Which tag is used to start PHP code?", options: ["<?php", "<?", "<script>", "<?="], answer: 0 },
-      { question: "How do you define a constant in PHP?", options: ["define()", "const", "constant()", "set()"], answer: 0 },
-      { question: "Which function is used to get the length of a string?", options: ["strlen()", "count()", "length()", "strcount()"], answer: 0 },
-      { question: "What does isset() do?", options: ["Checks if a variable is set and not null", "Declares a variable", "Removes a variable", "Prints a variable"], answer: 0 },
-      { question: "Which function is used to redirect a user to a new page?", options: ["header()", "redirect()", "location()", "goto()"], answer: 0 },
-      { question: "What is the result of 10 % 3 in PHP?", options: ["1", "3", "0.3", "3.33"], answer: 0 },
-      { question: "What is the scope of a variable declared inside a function?", options: ["Local", "Global", "Static", "Public"], answer: 0 },
-      { question: "How can you access a global variable inside a function?", options: ["global $var;", "$GLOBALS['var']", "Both A and B", "None of the above"], answer: 2 },
-      { question: "Which function is used to read a file into a string?", options: ["file_get_contents()", "read_file()", "fopen()", "file()"], answer: 0 },
-      { question: "How do you define a class in PHP?", options: ["class ClassName {}", "function ClassName {}", "define ClassName {}", "new ClassName()"], answer: 0 },
-      { question: "What is the correct way to start a session in PHP?", options: ["session_start();", "start_session();", "begin_session();", "open_session();"], answer: 0 },
-      { question: "Which function destroys a session?", options: ["session_destroy();", "destroy_session();", "end_session();", "unset_session();"], answer: 0 },
-      { question: "How do you check if a file exists in PHP?", options: ["file_exists()", "exists()", "file_check()", "check_file()"], answer: 0 },
-      { question: "Which method is used to send a cookie to the browser?", options: ["setcookie()", "sendcookie()", "cookie()", "createcookie()"], answer: 0 },
-      { question: "Which of these is a valid loop in PHP?", options: ["for", "while", "foreach", "All of the above"], answer: 3 },
-      { question: "Which magic method is called when an object is created?", options: ["__construct()", "__create()", "__make()", "__build()"], answer: 0 },
-      { question: "Which keyword is used to inherit a class in PHP?", options: ["extends", "implements", "inherits", "uses"], answer: 0 },
-      { question: "Which function converts special characters to HTML entities?", options: ["htmlspecialchars()", "htmlentities()", "escape()", "Both A and B"], answer: 3 },
-      { question: "Which PHP error control operator is used to suppress errors?", options: ["@", "#", "!", "&"], answer: 0 }
-    ];
+          intermediate: [
+            { question: "What is the output of (true && false)?", options: ["false", "true", "error", "null"], answer: 0 },
+            { question: "Which function checks if a file exists?", options: ["file_exists()", "is_file()", "file_check()", "exists()"], answer: 0 },
+            { question: "What will count([0, false, null]) return?", options: ["3", "2", "1", "3"], answer: 0 },
+            { question: "How to suppress errors in PHP?", options: ["Using @ before expression", "Using #", "Using !", "Using error_suppress()"], answer: 0 },
+            { question: "How to start a session in PHP?", options: ["session_start()", "start_session()", "init_session()", "begin_session()"], answer: 0 },
+            { question: "Which function is used to hash passwords securely?", options: ["password_hash()", "md5()", "sha1()", "crypt()"], answer: 0 },
+            { question: "How to prevent XSS in PHP output?", options: ["htmlspecialchars()", "addslashes()", "strip_tags()", "trim()"], answer: 0 },
+            { question: "Which function can remove HTML tags?", options: ["strip_tags()", "htmlspecialchars()", "htmlentities()", "str_clean()"], answer: 0 },
+            { question: "How to validate an email in PHP?", options: ["filter_var(\$email, FILTER_VALIDATE_EMAIL)", "check_email()", "email_is_valid()", "regex()"], answer: 0 },
+            { question: "Which function is used to get a substring?", options: ["substr()", "str_slice()", "substring()", "split()"], answer: 0 },
+            { question: "How to convert string to array?", options: ["explode()", "implode()", "split()", "to_array()"], answer: 0 },
+            { question: "implode() does what?", options: ["Joins array into string", "Splits string", "Converts string to int", "Removes spaces"], answer: 0 },
+            { question: "Which function changes string to lowercase?", options: ["strtolower()", "toLowerCase()", "lower()", "string_lower()"], answer: 0 },
+            { question: "What is the output type of json_encode()?", options: ["string", "array", "object", "JSON object"], answer: 0 },
+            { question: "Which keyword is used for error handling?", options: ["try", "catch", "throw", "All of the above"], answer: 3 },
+            { question: "What does empty([]) return?", options: ["true", "false", "error", "null"], answer: 0 },
+            { question: "Which of these can store session data?", options: ["\$_SESSION", "\$_COOKIE", "\$_POST", "\$_GET"], answer: 0 },
+            { question: "How to remove whitespace from both ends of a string?", options: ["trim()", "strip()", "clean()", "remove_space()"], answer: 0 },
+            { question: "What will echo 10 == '10'; output?", options: ["1", "true", "false", "error"], answer: 0 },
+            { question: "What does === check in PHP?", options: ["Value and type", "Only value", "Only type", "Nothing"], answer: 0 },
+            { question: "How to read a file into a string?", options: ["file_get_contents()", "read_file()", "fopen()", "get_file()"], answer: 0 },
+            { question: "Which function is used to get array keys?", options: ["array_keys()", "get_keys()", "keys()", "array_values()"], answer: 0 },
+            { question: "How to merge arrays?", options: ["array_merge()", "merge_array()", "combine()", "append_array()"], answer: 0 },
+            { question: "How to remove last element from array?", options: ["array_pop()", "array_shift()", "unset()", "remove_end()"], answer: 0 },
+            { question: "What does array_shift() do?", options: ["Removes first element", "Removes last element", "Adds at start", "None"], answer: 0 },
+            { question: "Which method gets HTTP request method?", options: ["\$_SERVER['REQUEST_METHOD']", "getMethod()", "method()", "request_type()"], answer: 0 },
+            { question: "How to get query parameters in URL?", options: ["\$_GET", "\$_POST", "\$_REQUEST", "\$_QUERY"], answer: 0 },
+            { question: "Which error level stops script execution?", options: ["E_ERROR", "E_WARNING", "E_NOTICE", "E_DEPRECATED"], answer: 0 },
+            { question: "Which constant turns off all errors?", options: ["error_reporting(0)", "disable_errors()", "no_error()", "E_OFF"], answer: 0 },
+            { question: "Which function gets PHP version?", options: ["phpversion()", "version()", "get_php_version()", "php_info()"], answer: 0 }
+          ],
+          advanced: [
+            { question: "What is the use of `__halt_compiler()` in PHP?", options: ["Stops execution after its call", "Halts compiler but continues script", "Exits script with error", "Starts the compiler"], answer: 0 },
+            { question: "What does the `namespace` keyword do?", options: ["Defines a scope for identifiers", "Creates a variable", "Defines a class", "Creates a function"], answer: 0 },
+            { question: "What is the purpose of `yield` in PHP?", options: ["To create a generator", "To pause a class", "To trigger an exception", "To end script"], answer: 0 },
+            { question: "How are generators different from arrays?", options: ["They use less memory", "They are faster", "They are mutable", "They are objects"], answer: 0 },
+            { question: "Which PHP function allows runtime code execution?", options: ["eval()", "exec()", "system()", "run()"], answer: 0 },
+            { question: "Which function provides information about defined variables?", options: ["get_defined_vars()", "defined_vars()", "var_dump()", "get_vars()"], answer: 0 },
+            { question: "What will `===` return for `0 === false`?", options: ["false", "true", "null", "1"], answer: 0 },
+            { question: "What is the result of `null === NULL`?", options: ["true", "false", "null", "error"], answer: 0 },
+            { question: "What is the main purpose of `assert()`?", options: ["Run tests during development", "Trigger errors", "Stop script", "Log debug info"], answer: 0 },
+            { question: "Which of the following can be used to call private functions via reflection?", options: ["ReflectionMethod", "call_user_func()", "Closure", "ReflectionFunc"], answer: 0 },
+            { question: "Which method returns the number of arguments passed to a function?", options: ["func_num_args()", "count_args()", "arg_count()", "arguments()"], answer: 0 },
+            { question: "How do you declare a strict type in PHP 7+?", options: ["declare(strict_types=1);", "strict=1;", "use strict;", "#strict_types=1"], answer: 0 },
+            { question: "Which stream wrapper is used to access remote files?", options: ["http://", "file://", "data://", "php://"], answer: 0 },
+            { question: "Which of these functions is used to get memory usage?", options: ["memory_get_usage()", "get_memory()", "mem_usage()", "memory_used()"], answer: 0 },
+            { question: "How does `array_filter()` work?", options: ["Filters array using a callback", "Sorts array", "Merges array", "Resets array"], answer: 0 },
+            { question: "How are closures defined in PHP?", options: ["Anonymous functions", "Class methods", "Named functions", "Global functions"], answer: 0 },
+            { question: "What does `array_reduce()` do?", options: ["Applies a callback to reduce array to one value", "Filters array", "Sorts array", "Flattens array"], answer: 0 },
+            { question: "What is the result of `print '5' + 5;`?", options: ["10", "55", "error", "5"], answer: 0 },
+            { question: "What is the return type of `include` on failure?", options: ["false", "null", "0", "Exception"], answer: 0 },
+            { question: "Which PHP function disables execution of external binaries?", options: ["disable_functions", "exec_disable()", "disable_external()", "external_block()"], answer: 0 },
+            { question: "How to parse a JSON string to an array?", options: ["json_decode(\$str, true)", "json_parse()", "parse_json()", "json_read()"], answer: 0 },
+            { question: "Which function retrieves all HTTP headers?", options: ["getallheaders()", "http_headers()", "headers()", "read_headers()"], answer: 0 },
+            { question: "Which PHP stream is used for raw POST data?", options: ["php://input", "php://raw", "php://post", "php://data"], answer: 0 },
+            { question: "What does `register_shutdown_function()` do?", options: ["Executes code after script ends", "Runs on error", "Runs on session close", "Starts a thread"], answer: 0 },
+            { question: "Which operator was added in PHP 7 for null coalescing?", options: ["??", "?:", "=>", "::"], answer: 0 },
+            { question: "How to convert an object to array?", options: ["(array)\$object", "to_array()", "object_to_array()", "convert()"], answer: 0 },
+            { question: "What is the output of `echo 5 <=> 10;`?", options: ["-1", "0", "1", "Error"], answer: 0 },
+            { question: "Which directive sets maximum script execution time?", options: ["max_execution_time", "max_runtime", "script_time", "execution_limit"], answer: 0 },
+            { question: "Which PHP function is used to register a function for autoloading?", options: ["spl_autoload_register()", "autoload()", "__autoload()", "register_autoloader()"], answer: 0 },
+            { question: "What does `ob_start()` do?", options: ["Starts output buffering", "Prints output", "Clears buffer", "Ends session"], answer: 0 }
+          ]
 
-    const quizContainer = document.getElementById("quiz-container");
-    const resultContainer = document.getElementById("result");
-    let score = 0;
-
-    questions.forEach((q, index) => {
-      const box = document.createElement("div");
-      box.classList.add("p-3", "mb-4", "bg-light", "border", "rounded", "col-md-6");
-      box.innerHTML = `<h5>Q${index + 1}. ${q.question}</h5>`;
-
-      q.options.forEach((opt, i) => {
-        const btn = document.createElement("button");
-        btn.classList.add("btn", "btn-outline-primary", "d-block", "my-2", "w-100", "text-start");
-        btn.textContent = opt;
-
-        btn.addEventListener("click", function () {
-          if (box.classList.contains("answered")) return;
-
-          box.classList.add("answered");
-          const buttons = box.querySelectorAll("button");
-
-          buttons.forEach((b, idx) => {
-            b.classList.add("disabled");
-            b.disabled = true;
-            if (idx === q.answer) b.classList.replace("btn-outline-primary", "btn-success");
+        };
+    
+        const questions = questionSets[level];
+        const quizTitle = document.getElementById("quiz-title");
+        quizTitle.textContent += ` - ${level.charAt(0).toUpperCase() + level.slice(1)} Level`;
+    
+        const quizContainer = document.getElementById("quiz-container");
+        const resultContainer = document.getElementById("result");
+        let score = 0;
+    
+        questions.forEach((q, index) => {
+          // Combine options with their original index
+          const shuffledOptions = q.options.map((opt, i) => ({ text: opt, isCorrect: i === q.answer }));
+    
+          // Shuffle the array
+          for (let i = shuffledOptions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+          }
+    
+          const box = document.createElement("div");
+          box.classList.add("p-3", "mb-4", "bg-light", "border", "rounded", "col-md-6");
+          box.innerHTML = `<h5>Q${index + 1}. ${q.question}</h5>`;
+    
+          shuffledOptions.forEach((optObj) => {
+            const btn = document.createElement("button");
+            btn.classList.add("btn", "btn-outline-primary", "d-block", "my-2", "w-100", "text-start");
+            btn.textContent = optObj.text;
+    
+            btn.addEventListener("click", function () {
+              if (box.classList.contains("answered")) return;
+    
+              box.classList.add("answered");
+              const buttons = box.querySelectorAll("button");
+    
+              buttons.forEach((b, idx) => {
+                b.classList.add("disabled");
+                b.disabled = true;
+    
+                if (shuffledOptions[idx].isCorrect) {
+                  b.classList.replace("btn-outline-primary", "btn-success");
+                }
+              });
+    
+              if (!optObj.isCorrect) {
+                btn.classList.replace("btn-outline-primary", "btn-danger");
+              } else {
+                score++;
+              }
+    
+              if (document.querySelectorAll(".answered").length === questions.length) {
+                const scores = JSON.parse(localStorage.getItem('php_quiz_scores') || '{}');
+                scores[level] = score;
+                localStorage.setItem('php_quiz_scores', JSON.stringify(scores));
+    
+                const resultMsg = `You scored <span class="text-success">${score}</span> out of <span class="text-primary">${questions.length}</span>`;
+                resultContainer.innerHTML = resultMsg;
+    
+                // Show total if on advanced
+                if (level === 'advanced') {
+                  const total = (scores.basic || 0) + (scores.intermediate || 0) + (scores.advanced || 0);
+                  resultContainer.innerHTML += `<br>Total Score: <span class="text-primary">${total}</span> / 90`;
+                }
+    
+                // Show Next Level button only if score >= 20
+                if (score >= 20) {
+                  const nextLevel = level === 'basic' ? 'intermediate' :
+                    level === 'intermediate' ? 'advanced' : null;
+    
+                  if (nextLevel) {
+                    const btn = document.createElement("a");
+                    btn.href = `${currentPage}?level=${nextLevel}`;
+                    btn.className = "btn btn-success mt-4";
+                    btn.textContent = `Start ${nextLevel.charAt(0).toUpperCase() + nextLevel.slice(1)} Level`;
+                    resultContainer.appendChild(document.createElement("br"));
+                    resultContainer.appendChild(btn);
+                  }
+                }
+              }
+            });
+    
+            box.appendChild(btn);
           });
-
-          if (i !== q.answer) {
-            btn.classList.replace("btn-outline-primary", "btn-danger");
-          } else {
-            score++;
-          }
-
-          if (document.querySelectorAll(".answered").length === questions.length) {
-            resultContainer.innerHTML = `You scored <span class="text-success">${score}</span> out of <span class="text-primary">${questions.length}</span>`;
-          }
+    
+          quizContainer.appendChild(box);
         });
-
-        box.appendChild(btn);
-      });
-
-      quizContainer.appendChild(box);
-    });
-  </script>
+    
+      </script>
 
 
   <!-- Vendor JS Files -->

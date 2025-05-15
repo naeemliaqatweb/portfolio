@@ -36,10 +36,11 @@
         <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
         <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
         <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a>
-          <li><a href="./interview.html" target="_blank" class="nav-link scrollto"><i class='bx bxs-file-pdf'></i> <span>InterView</span></a>
+        <li><a href="./interview.html" target="_blank" class="nav-link scrollto"><i class='bx bxs-file-pdf'></i>
+            <span>InterView</span></a>
         </li>
         <li><a href="../msqs.html" target="_blank" class="nav-link scrollto"><i class='bx bx-list-check'></i>
-          <span>MCQ's</span></a>
+            <span>MCQ's</span></a>
         </li>
       </ul>
     </nav><!-- .nav-menu -->
@@ -64,10 +65,10 @@
 
   <main id="main">
     <div class="container my-5">
-        <h2 class="mb-4 text-center">Laravel MCQ Quiz</h2>
-        <div id="quiz-container" class="row"></div>
-        <div id="result" class="text-center mt-4 fw-bold fs-4"></div>
-      </div>
+      <h2 class="mb-4 text-center" id="quiz-title">Laravel MCQ Quiz</h2>
+      <div id="quiz-container" class="row"></div>
+      <div id="result" class="text-center mt-4 fw-bold fs-4"></div>
+    </div>
 
   </main><!-- End #main -->
 
@@ -101,52 +102,587 @@
 
 
   <script>
-    const questions = [
-    { question: "What is Laravel?", options: ["A PHP framework", "A JavaScript library", "A database", "A CMS"], answer: 0 },
-      { question: "What architectural pattern does Laravel follow?", options: ["MVC", "MVVM", "MVP", "None"], answer: 0 },
-      { question: "Which command is used to create a new Laravel project?", options: ["laravel new project", "php artisan make:project", "composer new laravel", "laravel create project"], answer: 0 },
-      { question: "What is the purpose of .env file?", options: ["Environment configuration", "Routing", "View rendering", "Authentication"], answer: 0 },
-      { question: "What is the default database used in Laravel?", options: ["MySQL", "SQLite", "PostgreSQL", "None"], answer: 1 },
-      { question: "How do you start the Laravel development server?", options: ["php artisan serve", "npm run serve", "laravel start", "php laravel serve"], answer: 0 },
-      { question: "Which directory contains route files in Laravel?", options: ["routes/", "app/routes/", "config/routes/", "src/routes/"], answer: 0 },
-      { question: "Which command creates a controller?", options: ["php artisan make:controller", "php artisan controller:create", "make controller", "laravel controller new"], answer: 0 },
-      { question: "Which ORM is used in Laravel?", options: ["Eloquent", "Doctrine", "Hibernate", "Sequelize"], answer: 0 },
-      { question: "How do you define a route in Laravel?", options: ["Route::get('/', function() {})", "<route url='/' />", "GET('/', ...)", "route('/', ...)"], answer: 0 },
-      { question: "Where are Laravel middleware defined?", options: ["app/Http/Middleware", "app/Middleware", "config/middleware", "routes/middleware"], answer: 0 },
-      { question: "What does CSRF stand for?", options: ["Cross-Site Request Forgery", "Custom Site Routing Framework", "Create Secure Route Filter", "Cross Site Route Function"], answer: 0 },
-      { question: "How to protect a route with authentication middleware?", options: ["->middleware('auth')", "->auth()", "->secure()", "->protected()"], answer: 0 },
-      { question: "What file contains Laravel application configuration?", options: ["config/app.php", "app/config.php", "env/config.php", "bootstrap/app.php"], answer: 0 },
-      { question: "How do you pass data to a Blade view?", options: ["return view('page', ['key' => 'value'])", "return blade('page')", "return page()->view()", "render('page', 'key')"], answer: 0 },
-      { question: "What directive is used to include layouts in Blade?", options: ["@extends", "@include", "@layout", "@view"], answer: 0 },
-      { question: "Which command creates a model in Laravel?", options: ["php artisan make:model", "make:model", "laravel new:model", "create:model"], answer: 0 },
-      { question: "What is the purpose of a migration?", options: ["Modify database schema", "Style views", "Create models", "Configure sessions"], answer: 0 },
-      { question: "Where are Laravel views stored?", options: ["resources/views", "app/views", "routes/views", "storage/views"], answer: 0 },
-      { question: "What is the default templating engine used by Laravel?", options: ["Blade", "Twig", "Smarty", "Volt"], answer: 0 },
-      { question: "What is the Artisan command to run all migrations?", options: ["php artisan migrate", "php artisan db:migrate", "php artisan up", "php artisan migrate:all"], answer: 0 },
-      { question: "How can you rollback the last migration?", options: ["php artisan migrate:rollback", "php artisan rollback", "php artisan db:down", "php artisan undo"], answer: 0 },
-      { question: "Which helper function retrieves old form input?", options: ["old()", "input()", "previous()", "formdata()"], answer: 0 },
-      { question: "How do you define a route with a parameter?", options: ["Route::get('user/{id}', ...)", "Route::get('user:id', ...)", "Route::param('user')", "Route::url('user')"], answer: 0 },
-      { question: "Which file handles service provider registration?", options: ["config/app.php", "bootstrap/app.php", "app/Providers.php", "services/register.php"], answer: 0 },
-      { question: "What does the 'web' middleware group include?", options: ["Session, CSRF, Cookies", "Auth only", "API responses", "Headers"], answer: 0 },
-      { question: "How to retrieve the current URL in Laravel?", options: ["url()->current()", "get_url()", "request()->url()", "URL::get()"], answer: 0 },
-      { question: "Which command creates a request validation class?", options: ["php artisan make:request", "php artisan request:make", "laravel make:form", "make:validation"], answer: 0 },
-      { question: "What is Laravel Sanctum used for?", options: ["API Authentication", "Testing", "Database Backup", "Routing"], answer: 0 },
-      { question: "What does 'tinker' command do?", options: ["Interactive shell", "Database migration", "Routes test", "Environment check"], answer: 0 }
-    ];
+    const urlParams = new URLSearchParams(window.location.search);
+    const level = urlParams.get('level') || 'basic';
+    const scores = JSON.parse(localStorage.getItem('laravel_quiz_scores') || '{}');
+
+    const currentPage = window.location.pathname.split('/').pop(); // dynamic filename
+
+    if (level === 'intermediate' && (!scores.basic || scores.basic < 20)) {
+      alert("Please complete Basic level with at least 20 points to unlock Intermediate.");
+      window.location.href = `${currentPage}?level=basic`;
+    }
+
+    if (level === 'advanced' && (!scores.intermediate || scores.intermediate < 20)) {
+      alert("Please complete Intermediate level with at least 20 points to unlock Advanced.");
+      window.location.href = `${currentPage}?level=intermediate`;
+    }
+
+    if (level === 'basic' && scores.basic >= 20) {
+      alert("You've already passed Basic. Redirecting to Intermediate.");
+      window.location.href = `${currentPage}?level=intermediate`;
+    }
+
+
+    // Load questions per level
+    const questionSets = {
+      basic: [
+        { question: "What is Laravel?", options: ["A PHP framework", "A CMS", "A database", "A programming language"], answer: 0 },
+        { question: "Which command creates a new Laravel project?", options: ["laravel new projectname", "php artisan new project", "composer new laravel", "laravel init project"], answer: 0 },
+        { question: "What file contains environment-specific settings in Laravel?", options: [".env", "config.php", "settings.ini", "env.json"], answer: 0 },
+        { question: "Which ORM is used in Laravel?", options: ["Eloquent", "Doctrine", "Hibernate", "Sequelize"], answer: 0 },
+        { question: "Which command starts the development server?", options: ["php artisan serve", "php start", "laravel run", "php artisan run"], answer: 0 },
+        { question: "How do you create a controller in Laravel?", options: ["php artisan make:controller", "php artisan create:controller", "php artisan new:controller", "php artisan gen:controller"], answer: 0 },
+        { question: "What is the default route file in Laravel?", options: ["web.php", "routes.php", "default.php", "index.php"], answer: 0 },
+        { question: "Where are migration files stored?", options: ["database/migrations", "app/migrations", "resources/migrations", "storage/migrations"], answer: 0 },
+        { question: "Which command runs all pending migrations?", options: ["php artisan migrate", "php artisan run:migrations", "php migrate", "php artisan migrate:run"], answer: 0 },
+        { question: "What is the default database Laravel uses?", options: ["MySQL", "PostgreSQL", "SQLite", "SQL Server"], answer: 0 },
+        { question: "How do you create a model in Laravel?", options: ["php artisan make:model", "php artisan model:create", "php make model", "php model:new"], answer: 0 },
+        { question: "Which file holds the database connection configuration?", options: ["config/database.php", ".env", "database/config.php", "config/env.php"], answer: 0 },
+        { question: "What is used to protect routes in Laravel?", options: ["Middleware", "Guards", "Tokens", "Pipes"], answer: 0 },
+        { question: "Which template engine does Laravel use by default?", options: ["Blade", "Twig", "Smarty", "Mustache"], answer: 0 },
+        { question: "How do you run Laravel Artisan commands?", options: ["php artisan <command>", "artisan <command>", "laravel run <command>", "php run artisan:<command>"], answer: 0 },
+        { question: "What function is used to return a view?", options: ["view()", "render()", "display()", "returnView()"], answer: 0 },
+        { question: "How are routes defined in Laravel?", options: ["Route::get()", "router.get()", "defineRoute()", "URL::route()"], answer: 0 },
+        { question: "What directory contains controllers?", options: ["app/Http/Controllers", "app/Controllers", "routes/controllers", "resources/controllers"], answer: 0 },
+        { question: "What helper returns the base URL of the app?", options: ["url()", "base_url()", "site_url()", "route()"], answer: 0 },
+        { question: "Which command clears the application cache?", options: ["php artisan cache:clear", "php artisan clear:cache", "php cache:flush", "php artisan config:clear"], answer: 0 },
+        { question: "What is the purpose of CSRF protection?", options: ["Prevent cross-site request forgery", "Hide email addresses", "Encrypt passwords", "Secure database queries"], answer: 0 },
+        { question: "Where are Laravel configuration files stored?", options: ["config/", "resources/", "app/", "settings/"], answer: 0 },
+        { question: "How do you access request data in Laravel?", options: ["request()->input()", "input()", "data()", "$_POST"], answer: 0 },
+        { question: "Which function is used to redirect in Laravel?", options: ["redirect()", "goto()", "send()", "navigate()"], answer: 0 },
+        { question: "How do you define a named route?", options: ["->name()", "->label()", "->alias()", "->routeName()"], answer: 0 },
+        { question: "Which method is used to define a POST route?", options: ["Route::post()", "Route::send()", "Route::submit()", "Route::create()"], answer: 0 },
+        { question: "Which command rolls back the last migration batch?", options: ["php artisan migrate:rollback", "php artisan rollback", "php artisan undo:migrate", "php migrate:undo"], answer: 0 },
+        { question: "Where are Laravel views stored?", options: ["resources/views", "app/views", "public/views", "templates/"], answer: 0 },
+        { question: "Which method is used to validate form input?", options: ["validate()", "check()", "inputValidate()", "formValidate()"], answer: 0 },
+        { question: "How do you create a seeder in Laravel?", options: ["php artisan make:seeder", "php artisan create:seeder", "php artisan new:seeder", "php seeder:create"], answer: 0 }
+
+      ],
+
+      intermediate: [
+        {
+          question: "Which command rolls back the last database migration?",
+          options: [
+            "php artisan migrate:rollback",
+            "php artisan rollback:migrate",
+            "php artisan db:rollback",
+            "php artisan migrate:reset"
+          ],
+          answer: 0
+        },
+        {
+          question: "How can you validate a request in Laravel?",
+          options: [
+            "\$request->validate([...])",
+            "Validator::check()",
+            "validateRequest()",
+            "\$this->checkValidation()"
+          ],
+          answer: 0
+        },
+        {
+          question: "What is middleware in Laravel?",
+          options: [
+            "Filters HTTP requests",
+            "A route group",
+            "A helper function",
+            "A database query"
+          ],
+          answer: 0
+        },
+        {
+          question: "How do you create a new middleware?",
+          options: [
+            "php artisan make:middleware",
+            "php artisan middleware:create",
+            "php artisan new:middleware",
+            "php artisan generate:middleware"
+          ],
+          answer: 0
+        },
+        {
+          question: "What does CSRF stand for?",
+          options: [
+            "Cross-Site Request Forgery",
+            "Client Session Routing Framework",
+            "Centralized Server Request Format",
+            "Cross Server Request Filtering"
+          ],
+          answer: 0
+        },
+        {
+          question: "How do you retrieve the value of an environment variable in Laravel?",
+          options: [
+            "env('VARIABLE_NAME')",
+            "getenv('VARIABLE_NAME')",
+            "config('app.VARIABLE_NAME')",
+            "session('VARIABLE_NAME')"
+          ],
+          answer: 0
+        },
+        {
+          question: "Which function is used to dump variables for debugging?",
+          options: [
+            "dd()",
+            "dump()",
+            "log()",
+            "debug()"
+          ],
+          answer: 0
+        },
+        {
+          question: "What is the purpose of Laravel’s `artisan` commands?",
+          options: [
+            "Manage tasks and commands via the command line",
+            "Create database migrations",
+            "Generate a .env file",
+            "Optimize SQL queries"
+          ],
+          answer: 0
+        },
+        {
+          question: "What is the `route()` helper used for in Laravel?",
+          options: [
+            "Generate a URL for a named route",
+            "Define a route in web.php",
+            "Validate route parameters",
+            "Redirect to a route"
+          ],
+          answer: 0
+        },
+        {
+          question: "How do you create a form request validation class in Laravel?",
+          options: [
+            "php artisan make:request",
+            "php artisan form:make",
+            "php artisan request:create",
+            "php artisan make:validate"
+          ],
+          answer: 0
+        },
+        {
+          question: "Which class handles database query building in Laravel?",
+          options: [
+            "Query Builder",
+            "Eloquent",
+            "Schema",
+            "DB"
+          ],
+          answer: 0
+        },
+        {
+          question: "Which method is used to redirect a user in Laravel?",
+          options: [
+            "redirect()",
+            "redirectTo()",
+            "route()",
+            "url()"
+          ],
+          answer: 0
+        },
+        {
+          question: "What is the purpose of the `auth()` helper function in Laravel?",
+          options: [
+            "Access authentication services",
+            "Authenticate an HTTP request",
+            "Check user session status",
+            "Validate user input"
+          ],
+          answer: 0
+        },
+        {
+          question: "What does the `with()` method do in a controller in Laravel?",
+          options: [
+            "Pass data to a view",
+            "Validate data",
+            "Filter database results",
+            "Return a JSON response"
+          ],
+          answer: 0
+        },
+        {
+          question: "How do you create a relationship between models in Laravel?",
+          options: [
+            "Using the `hasMany()` or `belongsTo()` methods",
+            "Using the `relationship()` method",
+            "Using foreign keys",
+            "Through the `with()` method"
+          ],
+          answer: 0
+        },
+        {
+          question: "Which command publishes a package’s assets in Laravel?",
+          options: [
+            "php artisan vendor:publish",
+            "php artisan assets:publish",
+            "php artisan package:publish",
+            "php artisan publish:assets"
+          ],
+          answer: 0
+        },
+        {
+          question: "What does `php artisan config:cache` do?",
+          options: [
+            "Caches the application configuration",
+            "Clears the application configuration",
+            "Generates configuration files",
+            "Compiles routes into cache"
+          ],
+          answer: 0
+        },
+        {
+          question: "What is the default storage location for uploaded files in Laravel?",
+          options: [
+            "storage/app/public",
+            "public/uploads",
+            "assets/uploads",
+            "storage/uploads"
+          ],
+          answer: 0
+        },
+        {
+          question: "What is Laravel's default queue driver?",
+          options: [
+            "sync",
+            "database",
+            "redis",
+            "beanstalkd"
+          ],
+          answer: 0
+        },
+        {
+          question: "Which artisan command is used to clear the application cache?",
+          options: [
+            "php artisan cache:clear",
+            "php artisan config:clear",
+            "php artisan route:clear",
+            "php artisan clear:cache"
+          ],
+          answer: 0
+        },
+        {
+          question: "How do you enable Laravel's automatic model binding?",
+          options: [
+            "By type hinting the model in routes or controllers",
+            "Using `Route::model()` method",
+            "By enabling `RouteServiceProvider`",
+            "By using the `bind()` method"
+          ],
+          answer: 0
+        },
+        {
+          question: "Which command generates a migration in Laravel?",
+          options: [
+            "php artisan make:migration",
+            "php artisan migration:generate",
+            "php artisan create:migration",
+            "php artisan db:migration"
+          ],
+          answer: 0
+        },
+        {
+          question: "How do you create a new Laravel database seeder?",
+          options: [
+            "php artisan make:seeder",
+            "php artisan generate:seeder",
+            "php artisan seeder:create",
+            "php artisan db:seed:create"
+          ],
+          answer: 0
+        },
+        {
+          question: "What does `@yield()` do in Blade templates?",
+          options: [
+            "Defines a section to be filled by child views",
+            "Outputs content in the layout file",
+            "Includes a view inside another view",
+            "Displays raw PHP data"
+          ],
+          answer: 0
+        },
+        {
+          question: "What is the purpose of Laravel’s `artisan optimize` command?",
+          options: [
+            "Optimizes the application for production",
+            "Clears the application cache",
+            "Runs database migrations",
+            "Pre-compiles assets"
+          ],
+          answer: 0
+        },
+        {
+          question: "How do you handle file uploads in Laravel?",
+          options: [
+            "Using the `store()` method",
+            "Using the `upload()` method",
+            "Using the `move()` method",
+            "By using `request()->file()`"
+          ],
+          answer: 0
+        },
+        {
+          question: "What is the purpose of `artisan tinker`?",
+          options: [
+            "Interacts with the application in an interactive shell",
+            "Generates database queries",
+            "Runs a Laravel application",
+            "Compiles routes"
+          ],
+          answer: 0
+        },
+        {
+          question: "Which method retrieves the first record matching a condition in Laravel?",
+          options: [
+            "first()",
+            "find()",
+            "get()",
+            "take()"
+          ],
+          answer: 0
+        }
+      ],
+
+      advanced: [
+        {
+          question: "What is the purpose of Laravel Octane?",
+          options: [
+            "Improved performance via high-powered application servers",
+            "Improved routing capabilities",
+            "Better database support",
+            "Command line interface enhancement"
+          ],
+          answer: 0
+        },
+        {
+          question: "What does Laravel’s `singleton()` binding do?",
+          options: [
+            "Registers a class that is shared globally",
+            "Creates a new instance every time",
+            "Binds middleware",
+            "Creates an alias"
+          ],
+          answer: 0
+        },
+        {
+          question: "What is the role of the `boot()` method in service providers?",
+          options: [
+            "Perform tasks after all services are registered",
+            "Register custom routes",
+            "Create database connections",
+            "Run only on console commands"
+          ],
+          answer: 0
+        },
+        {
+          question: "Which database abstraction layer does Laravel use?",
+          options: [
+            "Eloquent ORM",
+            "PDO",
+            "Doctrine",
+            "DBAL"
+          ],
+          answer: 0
+        },
+        {
+          question: "How does Laravel support real-time broadcasting?",
+          options: [
+            "Via Laravel Echo and WebSockets",
+            "AJAX only",
+            "Polling every 5 seconds",
+            "REST API"
+          ],
+          answer: 0
+        },
+        {
+          question: "What is the purpose of Laravel's `broadcast` method?",
+          options: [
+            "Send real-time events to the client",
+            "Send HTTP requests to external servers",
+            "Broadcast a scheduled task",
+            "Schedule server-side events"
+          ],
+          answer: 0
+        },
+        {
+          question: "What is a service provider in Laravel?",
+          options: [
+            "A class that binds services into the container",
+            "A controller method",
+            "A middleware class",
+            "A command-line utility"
+          ],
+          answer: 0
+        },
+        {
+          question: "What does the `assertDatabaseHas` method do in Laravel tests?",
+          options: [
+            "Asserts a record exists in the database",
+            "Validates a query",
+            "Checks if a field exists",
+            "Ensures a relationship is present"
+          ],
+          answer: 0
+        },
+        {
+          question: "Which method in Laravel allows you to get the HTTP request method?",
+          options: [
+            "\$_SERVER['REQUEST_METHOD']",
+            "request()->method()",
+            "request()->getMethod()",
+            "method()"
+          ],
+          answer: 0
+        },
+        {
+          question: "How are database migrations created in Laravel?",
+          options: [
+            "Using `php artisan make:migration`",
+            "Using `php artisan create:migration`",
+            "By running SQL scripts directly",
+            "Automatically generated by controllers"
+          ],
+          answer: 0
+        },
+        {
+          question: "What are Laravel Policies used for?",
+          options: [
+            "Authorization logic for actions on models",
+            "Route validation",
+            "Database optimization",
+            "Middleware configuration"
+          ],
+          answer: 0
+        },
+        {
+          question: "Which helper function is used to log data in Laravel?",
+          options: [
+            "Log::info()",
+            "Log::debug()",
+            "log()",
+            "info()"
+          ],
+          answer: 0
+        },
+        {
+          question: "What is the purpose of the `withTrashed()` method in Eloquent?",
+          options: [
+            "Retrieve soft-deleted records",
+            "Force delete records",
+            "Retrieve records with timestamps",
+            "Modify a record after it’s deleted"
+          ],
+          answer: 0
+        },
+        {
+          question: "What is Laravel Horizon used for?",
+          options: [
+            "Queue management and monitoring",
+            "Real-time events handling",
+            "Application routing",
+            "File storage optimization"
+          ],
+          answer: 0
+        },
+        {
+          question: "Which method would you use to clear a specific cache tag in Laravel?",
+          options: [
+            "Cache::forget()",
+            "Cache::tags()->flush()",
+            "Cache::clear()",
+            "Cache::remove()"
+          ],
+          answer: 0
+        },
+        {
+          question: "What is the purpose of the `Route::middleware()` method in Laravel?",
+          options: [
+            "Attach middleware to routes",
+            "Validate route parameters",
+            "Register a route",
+            "Bind a service provider"
+          ],
+          answer: 0
+        },
+        {
+          question: "What does the `php artisan optimize` command do?",
+          options: [
+            "Optimizes the application for production",
+            "Clears the application cache",
+            "Runs database migrations",
+            "Pre-compiles assets"
+          ],
+          answer: 0
+        },
+        {
+          question: "Which class in Laravel is used for handling email services?",
+          options: [
+            "Mail",
+            "EmailService",
+            "Mailer",
+            "Notification"
+          ],
+          answer: 0
+        },
+        {
+          question: "How can you disable model timestamps in Laravel?",
+          options: [
+            "By setting `public $timestamps = false;` in the model",
+            "By calling `timestamps(false)` method",
+            "By disabling the database schema",
+            "By removing the `created_at` and `updated_at` columns"
+          ],
+          answer: 0
+        },
+        {
+          question: "Which method is used to generate a URL to a named route?",
+          options: [
+            "route()",
+            "url()",
+            "action()",
+            "route_url()"
+          ],
+          answer: 0
+        },
+        {
+          question: "How do you check if a session key exists in Laravel?",
+          options: [
+            "session()->has()",
+            "session()->exists()",
+            "Session::key()",
+            "isset(session()->key())"
+          ],
+          answer: 0
+        }
+      ]
+    };
+
+    const questions = questionSets[level];
+    const quizTitle = document.getElementById("quiz-title");
+    quizTitle.textContent += ` - ${level.charAt(0).toUpperCase() + level.slice(1)} Level`;
 
     const quizContainer = document.getElementById("quiz-container");
     const resultContainer = document.getElementById("result");
     let score = 0;
 
     questions.forEach((q, index) => {
+      // Combine options with their original index
+      const shuffledOptions = q.options.map((opt, i) => ({ text: opt, isCorrect: i === q.answer }));
+
+      // Shuffle the array
+      for (let i = shuffledOptions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+      }
+
       const box = document.createElement("div");
       box.classList.add("p-3", "mb-4", "bg-light", "border", "rounded", "col-md-6");
       box.innerHTML = `<h5>Q${index + 1}. ${q.question}</h5>`;
 
-      q.options.forEach((opt, i) => {
+      shuffledOptions.forEach((optObj) => {
         const btn = document.createElement("button");
         btn.classList.add("btn", "btn-outline-primary", "d-block", "my-2", "w-100", "text-start");
-        btn.textContent = opt;
+        btn.textContent = optObj.text;
 
         btn.addEventListener("click", function () {
           if (box.classList.contains("answered")) return;
@@ -157,17 +693,46 @@
           buttons.forEach((b, idx) => {
             b.classList.add("disabled");
             b.disabled = true;
-            if (idx === q.answer) b.classList.replace("btn-outline-primary", "btn-success");
+
+            if (shuffledOptions[idx].isCorrect) {
+              b.classList.replace("btn-outline-primary", "btn-success");
+            }
           });
 
-          if (i !== q.answer) {
+          if (!optObj.isCorrect) {
             btn.classList.replace("btn-outline-primary", "btn-danger");
           } else {
             score++;
           }
 
           if (document.querySelectorAll(".answered").length === questions.length) {
-            resultContainer.innerHTML = `You scored <span class="text-success">${score}</span> out of <span class="text-primary">${questions.length}</span>`;
+            const scores = JSON.parse(localStorage.getItem('laravel_quiz_scores') || '{}');
+            scores[level] = score;
+            localStorage.setItem('laravel_quiz_scores', JSON.stringify(scores));
+
+            const resultMsg = `You scored <span class="text-success">${score}</span> out of <span class="text-primary">${questions.length}</span>`;
+            resultContainer.innerHTML = resultMsg;
+
+            // Show total if on advanced
+            if (level === 'advanced') {
+              const total = (scores.basic || 0) + (scores.intermediate || 0) + (scores.advanced || 0);
+              resultContainer.innerHTML += `<br>Total Score: <span class="text-primary">${total}</span> / 90`;
+            }
+
+            // Show Next Level button only if score >= 20
+            if (score >= 20) {
+              const nextLevel = level === 'basic' ? 'intermediate' :
+                level === 'intermediate' ? 'advanced' : null;
+
+              if (nextLevel) {
+                const btn = document.createElement("a");
+                btn.href = `${currentPage}?level=${nextLevel}`;
+                btn.className = "btn btn-success mt-4";
+                btn.textContent = `Start ${nextLevel.charAt(0).toUpperCase() + nextLevel.slice(1)} Level`;
+                resultContainer.appendChild(document.createElement("br"));
+                resultContainer.appendChild(btn);
+              }
+            }
           }
         });
 
@@ -176,7 +741,9 @@
 
       quizContainer.appendChild(box);
     });
+
   </script>
+
 
 
   <!-- Vendor JS Files -->
